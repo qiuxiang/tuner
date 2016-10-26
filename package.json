@@ -1,0 +1,12 @@
+{
+  "name": "tuner",
+  "version": "0.0.1",
+  "description": "The tuner based on web audio api",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qiuxiang/tuner.git"
+  },
+  "author": "Qiu Xiang <xiang.qiu@qq.com>",
+  "license": "MIT"
+}
