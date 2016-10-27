@@ -1,8 +1,18 @@
 <!doctype html>
 <html>
+<head>
+  <style>
+  #pitch {
+    font-size: 32px;
+    text-align: center;
+  }
+  </style>
+</head>
 <body>
 <div><canvas id="waveform"></canvas></div>
 <div><canvas id="spectrogram"></canvas></div>
+<div id="pitch"></div>
+<script src="aubio.js"></script>
 <script src="waveform.js"></script>
 <script src="spectrogram.js"></script>
 <script src="app.js"></script>

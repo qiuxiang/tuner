@@ -1,10 +1,12 @@
 var audioContext = new AudioContext()
 var analyser = audioContext.createAnalyser()
-// analyser.fftSize = 1024
+analyser.fftSize = 4096
 var audioBuffer = new Float32Array(analyser.fftSize)
 var frequencyData = new Uint8Array(analyser.frequencyBinCount)
 var waveform = new Waveform('#waveform')
 var spectrogram = new Spectrogram('#spectrogram')
+var pitchDetector = new (Module().PitchDetector)('default', analyser.fftSize, 1, audioContext.sampleRate)
+var $pitch = document.querySelector('#pitch')
 
 // var audio = new Audio()
 // var audioSource = audioContext.createMediaElementSource(audio)
@@ -26,4 +28,5 @@ function process() {
   analyser.getByteFrequencyData(frequencyData)
   waveform.update(audioBuffer)
   spectrogram.update(frequencyData)
+  pitch.innerHTML = Math.round(pitchDetector.getPitch(audioBuffer)) + ' Hz'
 }
