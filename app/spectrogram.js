@@ -2,7 +2,7 @@ var Spectrogram = function (selector) {
   this.canvas = document.querySelector(selector)
   this.canvas.width = document.body.clientWidth
   this.context = this.canvas.getContext('2d')
-  this.scale = 8
+  this.scale = 2
 }
 
 Spectrogram.prototype.update = function (data) {

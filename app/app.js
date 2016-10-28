@@ -21,6 +21,21 @@ navigator.mediaDevices.getUserMedia({audio: true}).then(function (stream) {
   audioContext.createMediaStreamSource(stream).connect(analyser)
 })
 
+function noteFromFrequency(frequency) {
+  var noteNum = 12 * (Math.log(frequency / 440) / Math.log(2))
+  return Math.round(noteNum) + 69
+}
+
+function frequencyFromNote(note) {
+  return 440 * Math.pow(2, (note - 69) / 12)
+}
+
+function centsDiffFromFrequency(frequency, note) {
+  return Math.floor(1200 * Math.log(frequency / frequencyFromNote(note)) / Math.log(2))
+}
+
+var noteStrings = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+
 process()
 function process() {
   requestAnimationFrame(process)
@@ -28,5 +43,12 @@ function process() {
   analyser.getByteFrequencyData(frequencyData)
   waveform.update(audioBuffer)
   spectrogram.update(frequencyData)
-  pitch.innerHTML = Math.round(pitchDetector.getPitch(audioBuffer)) + ' Hz'
+
+  var frequency = pitchDetector.getPitch(audioBuffer)
+  if (frequency) {
+    var note = noteFromFrequency(frequency)
+    var noteString = noteStrings[note % 12] || ''
+    var detune = centsDiffFromFrequency(frequency, note)
+    pitch.innerHTML = noteString + ', ' + ' Hz, ' + detune + ' cents' + Math.round(frequency)
+  }
 }
