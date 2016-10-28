@@ -49,6 +49,6 @@ function process() {
     var note = noteFromFrequency(frequency)
     var noteString = noteStrings[note % 12] || ''
     var detune = centsDiffFromFrequency(frequency, note)
-    pitch.innerHTML = noteString + ', ' + ' Hz, ' + detune + ' cents' + Math.round(frequency)
+    pitch.innerHTML = noteString + ', ' + detune + ' cents, ' + Math.round(frequency) + ' Hz'
   }
 }
