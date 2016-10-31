@@ -48,7 +48,7 @@ function process() {
   if (frequency) {
     var note = noteFromFrequency(frequency)
     var noteString = noteStrings[note % 12] || ''
-    var detune = centsDiffFromFrequency(frequency, note)
-    pitch.innerHTML = noteString + ', ' + detune + ' cents, ' + Math.round(frequency) + ' Hz'
+    var centsDiff = centsDiffFromFrequency(frequency, note)
+    $pitch.innerHTML = noteString + ', ' + centsDiff + ' cents, ' + frequency.toFixed(1) + ' Hz'
   }
 }
