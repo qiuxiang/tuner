@@ -1,6 +1,5 @@
 var audioContext = new AudioContext()
 var analyser = audioContext.createAnalyser()
-analyser.fftSize = 4096
 var biquadFilter = audioContext.createBiquadFilter()
 var audioBuffer = new Float32Array(analyser.fftSize)
 var frequencyData = new Uint8Array(analyser.frequencyBinCount)
