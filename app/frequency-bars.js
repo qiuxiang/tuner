@@ -1,10 +1,10 @@
-var Spectrogram = function (selector) {
+var FrequencyBars = function (selector) {
   this.canvas = document.querySelector(selector)
   this.canvas.width = document.body.clientWidth
   this.context = this.canvas.getContext('2d')
 }
 
-Spectrogram.prototype.update = function (data) {
+FrequencyBars.prototype.update = function (data) {
   var dataLength = parseInt(data.length * 0.125)
   var barWidth = this.canvas.width / dataLength
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)

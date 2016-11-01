@@ -4,7 +4,7 @@ var biquadFilter = audioContext.createBiquadFilter()
 var audioBuffer = new Float32Array(analyser.fftSize)
 var frequencyData = new Uint8Array(analyser.frequencyBinCount)
 var waveform = new Waveform('#waveform')
-var spectrogram = new Spectrogram('#spectrogram')
+var frequencyBars = new FrequencyBars('#frequency-bars')
 var pitchDetector = new (Module().PitchDetector)('default', analyser.fftSize, 1, audioContext.sampleRate)
 var $pitch = document.querySelector('#pitch')
 
@@ -37,7 +37,7 @@ function process() {
   analyser.getFloatTimeDomainData(audioBuffer)
   analyser.getByteFrequencyData(frequencyData)
   waveform.update(audioBuffer)
-  spectrogram.update(frequencyData)
+  frequencyBars.update(frequencyData)
 
   var frequency = pitchDetector.getPitch(audioBuffer)
   if (frequency) {
