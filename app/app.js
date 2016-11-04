@@ -1,4 +1,4 @@
-var audioContext = new AudioContext()
+var audioContext = new (window.AudioContext || window.webkitAudioContext)()
 var analyser = audioContext.createAnalyser()
 var biquadFilter = audioContext.createBiquadFilter()
 var audioBuffer = new Float32Array(analyser.fftSize)
@@ -11,10 +11,11 @@ var $pitch = document.querySelector('#pitch')
 biquadFilter.type = 'lowpass'
 biquadFilter.frequency.value = 440
 
-navigator.mediaDevices.getUserMedia({audio: true}).then(function (stream) {
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
+navigator.getUserMedia({audio: true}, function (stream) {
   audioContext.createMediaStreamSource(stream).connect(biquadFilter)
   biquadFilter.connect(analyser)
-})
+}, function () {})
 
 function noteFromFrequency(frequency) {
   var noteNum = 12 * (Math.log(frequency / 440) / Math.log(2))

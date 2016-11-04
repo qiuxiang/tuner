@@ -8,7 +8,7 @@ Waveform.prototype.update = function (data) {
   var slice = this.canvas.width / (data.length - 1)
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
   this.context.beginPath()
-  data.reduce((function (x, value, index) {
+  Array.prototype.slice.call(data).reduce((function (x, value, index) {
     var y = (1 + value) * this.canvas.height / 2
     if(index > 0) {
       this.context.lineTo(x, y)
