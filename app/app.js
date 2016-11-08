@@ -1,7 +1,7 @@
 var audioContext = new (window.AudioContext || window.webkitAudioContext)()
 var biquadFilter = audioContext.createBiquadFilter()
 var scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1)
-var pitchDetector = new (Module().PitchDetector)(
+var pitchDetector = new (Module().AubioPitch)(
       'default', scriptProcessor.bufferSize, 1, audioContext.sampleRate)
 var waveform = new Waveform('#waveform')
 var frequencyBars = new FrequencyBars('#frequency-bars')
@@ -37,7 +37,7 @@ scriptProcessor.addEventListener('audioprocess', function (event) {
   waveform.update(audioBuffer)
   // frequencyBars.update(frequencyData)
 
-  var frequency = pitchDetector.getPitch(audioBuffer)
+  var frequency = pitchDetector.do(audioBuffer)
   if (frequency) {
     var note = noteFromFrequency(frequency)
     var noteString = noteStrings[note % 12] || ''
