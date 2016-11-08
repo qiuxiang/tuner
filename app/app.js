@@ -1,11 +1,10 @@
 var audioContext = new (window.AudioContext || window.webkitAudioContext)()
-var analyser = audioContext.createAnalyser()
 var biquadFilter = audioContext.createBiquadFilter()
-var audioBuffer = new Float32Array(analyser.fftSize)
-var frequencyData = new Uint8Array(analyser.frequencyBinCount)
+var scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1)
+var pitchDetector = new (Module().PitchDetector)(
+      'default', scriptProcessor.bufferSize, 1, audioContext.sampleRate)
 var waveform = new Waveform('#waveform')
 var frequencyBars = new FrequencyBars('#frequency-bars')
-var pitchDetector = new (Module().PitchDetector)('default', analyser.fftSize, 1, audioContext.sampleRate)
 var $pitch = document.querySelector('#pitch')
 
 biquadFilter.type = 'lowpass'
@@ -14,7 +13,7 @@ biquadFilter.frequency.value = 440
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
 navigator.getUserMedia({audio: true}, function (stream) {
   audioContext.createMediaStreamSource(stream).connect(biquadFilter)
-  biquadFilter.connect(analyser)
+  biquadFilter.connect(scriptProcessor)
 }, function () {})
 
 function noteFromFrequency(frequency) {
@@ -32,13 +31,11 @@ function centsDiffFromFrequency(frequency, note) {
 
 var noteStrings = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
-process()
-function process() {
-  requestAnimationFrame(process)
-  analyser.getFloatTimeDomainData(audioBuffer)
-  analyser.getByteFrequencyData(frequencyData)
+scriptProcessor.connect(audioContext.destination)
+scriptProcessor.addEventListener('audioprocess', function (event) {
+  var audioBuffer = event.inputBuffer.getChannelData(0)
   waveform.update(audioBuffer)
-  frequencyBars.update(frequencyData)
+  // frequencyBars.update(frequencyData)
 
   var frequency = pitchDetector.getPitch(audioBuffer)
   if (frequency) {
@@ -47,4 +44,4 @@ function process() {
     var centsDiff = centsDiffFromFrequency(frequency, note)
     $pitch.innerHTML = noteString + ', ' + centsDiff + ' cents, ' + frequency.toFixed(1) + ' Hz'
   }
-}
+})
