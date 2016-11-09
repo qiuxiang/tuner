@@ -1,16 +1,29 @@
-var FrequencyBars = function (selector) {
-  this.canvas = document.querySelector(selector)
-  this.canvas.width = document.body.clientWidth
-  this.context = this.canvas.getContext('2d')
+var FrequencyBars = function (selector, bars) {
+  this.$element = document.querySelector(selector)
+  this.$bars = []
+  var barWidth = this.$element.clientWidth / bars - 1
+  for (var i = 0; i < bars; i += 1) {
+    var $bar = document.createElement('div')
+    $bar.className = 'frequency-bar'
+    $bar.style.width = barWidth + 'px'
+    $bar.style.left = (barWidth + 1) * i + 'px'
+    this.$bars.push($bar)
+    this.$element.appendChild($bar)
+  }
 }
 
 FrequencyBars.prototype.update = function (data) {
-  var dataLength = parseInt(data.length * 0.125)
-  var barWidth = this.canvas.width / dataLength
-  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
-  Array.prototype.slice.call(data).reduce((function (x, value, index) {
-    this.context.fillStyle = 'hsl(' + (index * 360 / dataLength) + ', 100%, 50%)'
-    this.context.fillRect(x, this.canvas.height - value / 2, barWidth, value / 2)
-    return x + barWidth
-  }).bind(this), 0)
+  var $bars = this.$bars
+  var step = data.length / this.$bars.length
+  var sum = 0
+  data.reduce(function (count, value) {
+    if (count % step) {
+      sum += value
+    } else {
+      value = sum / step
+      $bars[(count / step) - 1].style.height = value + 'px'
+      sum = 0
+    }
+    return count + 1
+  }, 1)
 }
