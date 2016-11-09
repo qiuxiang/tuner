@@ -1,12 +1,14 @@
 body {
   font-family: sans-serif;
   color: #2c3e50;
-  padding-top: 40px;
+  margin: 0;
 }
 
 .pitch {
   text-align: center;
-  margin-top: 40px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
 }
 
 .pitch-name {
@@ -14,7 +16,8 @@ body {
   font-weight: bold;
   position: relative;
   display: inline-block;
-  padding-right: 40px;
+  padding-right: 30px;
+  padding-left: 10px;
 }
 
 .pitch-name span {
@@ -43,16 +46,18 @@ body {
 }
 
 .meter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 50%;
   width: 400px;
-  height: 200px;
-  margin: auto;
-  position: relative;
-  padding-top: 50px;
+  height: 33%;
+  margin: 0 auto 5vh auto;
 }
 
 .meter-pointer {
   width: 2px;
-  height: 200px;
+  height: 100%;
   background: #2c3e50;
   transform: rotate(45deg);
   transform-origin: bottom;
@@ -74,7 +79,7 @@ body {
 
 .meter-scale {
   width: 1px;
-  height: 200px;
+  height: 100%;
   transform-origin: bottom;
   transition: transform 0.5s;
   box-sizing: border-box;
@@ -135,12 +140,13 @@ body {
 
 .frequency-bars {
   width: 400px;
-  height: 400px;
+  height: 50%;
   position: absolute;
   bottom: 0;
   left: 50%;
   margin-left: -200px;
   z-index: -1;
+  overflow: hidden;
 }
 
 .frequency-bar {
@@ -149,4 +155,14 @@ body {
   transition: height 0.5s;
   position: absolute;
   bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .meter {
+    width: 100%;
+  }
+
+  .frequency-bars {
+    width: 100%;
+  }
 }
