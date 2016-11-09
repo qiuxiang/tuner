@@ -6,13 +6,13 @@ var Application = function () {
   this.$frequency = document.querySelector('.pitch-frequency')
   this.$pointer = document.querySelector('.meter-pointer')
   this.$frequencyBars = new FrequencyBars('.frequency-bars', 32)
-  this.update({name: 'A', frequency: 440, numbered: 4, cents:0})
+  this.update({name: 'A', frequency: 440, numbered: 4, cents: 0})
 }
 
 Application.prototype.start = function () {
   var self = this
   this.tuner.onAudioProcess = function (buffer) {
-    self.$frequencyBars.update(self.fft.forward(buffer).norm.slice(0, 256))
+    self.$frequencyBars.update(self.fft.forward(buffer).norm.slice(0, self.tuner.bufferSize / 64))
   }
   this.tuner.onNoteDetected = function (note) {
     console.log(note)
@@ -27,10 +27,11 @@ Application.prototype.start = function () {
 
 Application.prototype.update = function (note) {
   var sharp = note.name[1] || ''
-  this.$note.innerHTML =
-    `${note.name[0]}<span class="pitch-sharp">${sharp}</span><span class="pitch-numbered">${note.numbered}</span>`
-  this.$frequency.innerHTML = `${note.frequency.toFixed(1)}<span>Hz</span>`
-  this.$pointer.style.transform = `rotate(${note.cents / 50 * 45}deg)`
+  this.$note.innerHTML = note.name[0] +
+    '<span class="pitch-sharp">' + sharp + '</span>' +
+    '<span class="pitch-numbered">' + note.numbered + '</span>'
+  this.$frequency.innerHTML = note.frequency.toFixed(1) + '<span>Hz</span>'
+  this.$pointer.style.transform = 'rotate(' + note.cents / 50 * 45 + 'deg)'
 }
 
 var app = new Application()
