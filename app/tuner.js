@@ -51,15 +51,34 @@ Tuner.prototype.start = function () {
   })
 }
 
+/**
+ * get musical note from frequency
+ *
+ * @param {float} frequency
+ * @returns {int}
+ */
 Tuner.prototype.getNote = function (frequency) {
   var note = 12 * (Math.log(frequency / this.middleA) / Math.log(2))
   return Math.round(note) + this.semitone
 }
 
+/**
+ * get the musical note's standard frequency
+ *
+ * @param note
+ * @returns {number}
+ */
 Tuner.prototype.getStandardFrequency = function (note) {
   return this.middleA * Math.pow(2, (note - this.semitone) / 12)
 }
 
+/**
+ * get cents difference between given frequency and musical note's standard frequency
+ *
+ * @param {float} frequency
+ * @param {int} note
+ * @returns {int}
+ */
 Tuner.prototype.getCents = function (frequency, note) {
   return Math.floor(1200 * Math.log(frequency / this.getStandardFrequency(note)) / Math.log(2))
 }

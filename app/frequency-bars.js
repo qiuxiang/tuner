@@ -1,9 +1,19 @@
+/**
+ * the frequency histogram
+ *
+ * @param {string} selector
+ * @param {int} bars - the bars number
+ * @constructor
+ */
 var FrequencyBars = function (selector, bars) {
   this.$root = document.querySelector(selector)
   this.$bars = []
   this.initBars(bars)
 }
 
+/**
+ * @param {int} bars - the bars number
+ */
 FrequencyBars.prototype.initBars = function (bars) {
   var barWidth = this.$root.clientWidth / bars - 1
   for (var i = 0; i < bars; i += 1) {
@@ -16,6 +26,9 @@ FrequencyBars.prototype.initBars = function (bars) {
   }
 }
 
+/**
+ * @param {Array} data
+ */
 FrequencyBars.prototype.update = function (data) {
   var $bars = this.$bars
   var step = data.length / this.$bars.length

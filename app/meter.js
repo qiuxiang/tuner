@@ -1,3 +1,7 @@
+/**
+ * @param {string} selector
+ * @constructor
+ */
 var Meter = function (selector) {
   this.$root = document.querySelector(selector)
   this.$pointer = this.$root.querySelector('.meter-pointer')
@@ -17,6 +21,9 @@ Meter.prototype.init = function () {
   }
 }
 
+/**
+ * @param {int} deg
+ */
 Meter.prototype.update = function (deg) {
   this.$pointer.style.transform = 'rotate(' + deg + 'deg)'
 }
