@@ -46,8 +46,8 @@ Tuner.prototype.start = function () {
         })
       }
     })
-  }, function () {
-    alert('getUserMedia fail')
+  }, function (error) {
+    alert(error.name + ': ' + error.message)
   })
 }
 
