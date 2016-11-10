@@ -1,14 +1,18 @@
 var FrequencyBars = function (selector, bars) {
-  this.$element = document.querySelector(selector)
+  this.$root = document.querySelector(selector)
   this.$bars = []
-  var barWidth = this.$element.clientWidth / bars - 1
+  this.initBars(bars)
+}
+
+FrequencyBars.prototype.initBars = function (bars) {
+  var barWidth = this.$root.clientWidth / bars - 1
   for (var i = 0; i < bars; i += 1) {
     var $bar = document.createElement('div')
     $bar.className = 'frequency-bar'
     $bar.style.width = barWidth + 'px'
     $bar.style.left = (barWidth + 1) * i + 'px'
     this.$bars.push($bar)
-    this.$element.appendChild($bar)
+    this.$root.appendChild($bar)
   }
 }
 
