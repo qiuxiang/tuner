@@ -9,7 +9,6 @@ var Meter = function (selector) {
 }
 
 Meter.prototype.init = function () {
-  var deg = -45;
   for (var i = 0; i <= 10; i += 1) {
     var $scale = document.createElement('div')
     $scale.className = 'meter-scale'

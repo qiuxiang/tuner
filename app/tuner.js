@@ -11,7 +11,7 @@ var Tuner = function () {
   this.audioContext = new window.AudioContext()
   this.biquadFilter = this.audioContext.createBiquadFilter()
   this.biquadFilter.type = 'lowpass'
-  this.biquadFilter.frequency.value = 440
+  this.biquadFilter.frequency.value = this.middleA
   this.scriptProcessor = this.audioContext.createScriptProcessor(this.bufferSize, 1, 1)
   this.pitchDetector = new (Module().AubioPitch)(
     'default', this.bufferSize, 1, this.audioContext.sampleRate)
@@ -24,7 +24,16 @@ Tuner.prototype.start = function () {
   }
 
   var self = this
-  navigator.getUserMedia({audio: true}, function (stream) {
+  navigator.getUserMedia({
+    audio: {
+      mandatory: {
+        googEchoCancellation: false,
+        googAutoGainControl: false,
+        googNoiseSuppression: false,
+        googHighpassFilter: false,
+      },
+    },
+  }, function (stream) {
     self.audioContext.createMediaStreamSource(stream).connect(self.biquadFilter)
     self.biquadFilter.connect(self.scriptProcessor)
     self.scriptProcessor.connect(self.audioContext.destination)
@@ -81,4 +90,23 @@ Tuner.prototype.getStandardFrequency = function (note) {
  */
 Tuner.prototype.getCents = function (frequency, note) {
   return Math.floor(1200 * Math.log(frequency / this.getStandardFrequency(note)) / Math.log(2))
+}
+
+/**
+ * play the musical note
+ *
+ * @param {float} frequency
+ */
+Tuner.prototype.play = function (frequency) {
+  if (!this.oscillator) {
+    this.oscillator = this.audioContext.createOscillator()
+    this.oscillator.connect(this.audioContext.destination)
+    this.oscillator.start()
+  }
+  this.oscillator.frequency.value = frequency
+}
+
+Tuner.prototype.stop = function () {
+  this.oscillator.stop()
+  this.oscillator = null
 }
