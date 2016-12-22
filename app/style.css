@@ -31,6 +31,7 @@ body {
   padding-left: 10px;
 }
 
+
 .note-name.active {
   color: #e74c3c;
 }
@@ -40,6 +41,11 @@ body {
   white-space: nowrap;
   cursor: default;
   user-select: none;
+  -ms-overflow-style: none;
+}
+
+.note-names::-webkit-scrollbar {
+  display: none;
 }
 
 .note-name span {
