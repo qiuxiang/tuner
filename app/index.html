@@ -18,6 +18,11 @@
   <div class="note-mask"></div>
 </div>
 <div class="frequency-bars"></div>
+<script>
+window.addEventListener('error', function (error) {
+  alert(error.message)
+})
+</script>
 <script src="aubio.js"></script>
 <script src="tuner.js"></script>
 <script src="meter.js"></script>
