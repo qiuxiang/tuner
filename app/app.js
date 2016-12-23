@@ -1,6 +1,5 @@
 var Application = function () {
   this.tuner = new Tuner()
-  this.fft = new (Module().AubioFFT)(this.tuner.bufferSize)
   this.$note = document.querySelector('.note-name')
   this.$frequency = document.querySelector('.note-frequency')
   this.note = new Note('.note', this.tuner)
@@ -12,9 +11,8 @@ var Application = function () {
 
 Application.prototype.start = function () {
   var self = this
-  this.tuner.onAudioProcess = function (buffer) {
-    self.frequencyBars.update(
-      self.fft.forward(buffer).norm.slice(0, self.tuner.bufferSize / 64))
+  this.tuner.onAudioProcess = function (timeDomainData, frequencyData) {
+    self.frequencyBars.update(frequencyData.slice(0, self.tuner.bufferSize / 64))
   }
   this.tuner.onNoteDetected = function (note) {
     if (self.automaticMode) {
