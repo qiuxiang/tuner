@@ -31,16 +31,7 @@ FrequencyBars.prototype.initBars = function (bars) {
  */
 FrequencyBars.prototype.update = function (data) {
   var $bars = this.$bars
-  var step = data.length / this.$bars.length
-  var sum = 0
-  data.reduce(function (count, value) {
-    if (count % step) {
-      sum += value
-    } else {
-      value = sum / step
-      $bars[(count / step) - 1].style.height = value + 'px'
-      sum = 0
-    }
-    return count + 1
-  }, 1)
+  data.forEach(function (value, i) {
+    $bars[i].style.height = value / 2 + 'px'
+  })
 }

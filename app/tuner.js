@@ -6,7 +6,7 @@ var Tuner = function () {
 
   this.middleA = 440
   this.semitone = 69
-  this.bufferSize = 4096
+  this.bufferSize = 2048
   this.noteStrings = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B']
   this.audioContext = new window.AudioContext()
   this.biquadFilter = this.audioContext.createBiquadFilter()
