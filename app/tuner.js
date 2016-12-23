@@ -6,16 +6,10 @@ var Tuner = function () {
 
   this.middleA = 440
   this.semitone = 69
-  this.bufferSize = 2048
+  this.bufferSize = 4096
   this.noteStrings = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B']
   this.audioContext = new window.AudioContext()
-  this.biquadFilter = this.audioContext.createBiquadFilter()
-  this.biquadFilter.type = 'lowpass'
-  this.biquadFilter.frequency.value = this.middleA
   this.analyser = this.audioContext.createAnalyser()
-  this.analyser.fftSize = this.bufferSize
-  this.timeDomainData = new Float32Array(this.analyser.fftSize)
-  this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount)
   this.scriptProcessor = this.audioContext.createScriptProcessor(this.bufferSize, 1, 1)
   this.pitchDetector = new (Module().AubioPitch)(
     'yin', this.bufferSize, 1, this.audioContext.sampleRate)
@@ -38,18 +32,11 @@ Tuner.prototype.start = function () {
       },
     },
   }, function (stream) {
-    self.audioContext.createMediaStreamSource(stream).connect(self.biquadFilter)
-    self.biquadFilter.connect(self.analyser)
+    self.audioContext.createMediaStreamSource(stream).connect(self.analyser)
     self.analyser.connect(self.scriptProcessor)
     self.scriptProcessor.connect(self.audioContext.destination)
     self.scriptProcessor.addEventListener('audioprocess', function (event) {
-      self.analyser.getFloatTimeDomainData(self.timeDomainData)
-      self.analyser.getByteFrequencyData(self.frequencyData)
-      if (self.onAudioProcess) {
-        self.onAudioProcess(self.timeDomainData, self.frequencyData)
-      }
-
-      var frequency = self.pitchDetector.do(self.timeDomainData)
+      var frequency = self.pitchDetector.do(event.inputBuffer.getChannelData(0))
       if (frequency && self.onNoteDetected) {
         var note = self.getNote(frequency)
         self.onNoteDetected({
