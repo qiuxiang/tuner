@@ -5,15 +5,13 @@ var Application = function () {
   this.note = new Note('.note', this.tuner)
   this.meter = new Meter('.meter')
   this.frequencyBars = new FrequencyBars('.frequency-bars', 32)
+  this.frequencyData = new Uint8Array(this.tuner.analyser.frequencyBinCount)
   this.automaticMode = true
   this.update({name: 'A', frequency: 440, numbered: 4, value: 69, cents: 0})
 }
 
 Application.prototype.start = function () {
   var self = this
-  this.tuner.onAudioProcess = function (timeDomainData, frequencyData) {
-    self.frequencyBars.update(frequencyData.slice(0, self.tuner.bufferSize / 64))
-  }
   this.tuner.onNoteDetected = function (note) {
     if (self.automaticMode) {
       if (self.lastNote == note.name) {
@@ -24,6 +22,13 @@ Application.prototype.start = function () {
     }
   }
   this.tuner.start()
+  this.updateFrequencyBars()
+}
+
+Application.prototype.updateFrequencyBars = function () {
+  this.tuner.analyser.getByteFrequencyData(this.frequencyData)
+  this.frequencyBars.update(this.frequencyData.slice(0, this.tuner.analyser.fftSize / 64))
+  requestAnimationFrame(this.updateFrequencyBars.bind(this))
 }
 
 Application.prototype.update = function (note) {

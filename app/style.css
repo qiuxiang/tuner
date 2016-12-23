@@ -134,7 +134,7 @@ body {
 .frequency-bar {
   display: inline-block;
   background: #ecf0f1;
-  transition: height 0.2s;
+  transition: height 0.1s;
   position: absolute;
   bottom: 0;
 }
