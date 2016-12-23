@@ -59,8 +59,10 @@ Note.prototype.clearActive = function () {
 }
 
 Note.prototype.update = function (note) {
-  this.active(this.$notesMap[note.value])
-  this.$frequency.childNodes[0].textContent = parseFloat(note.frequency).toFixed(1)
+  if (note.value in this.$notesMap) {
+    this.active(this.$notesMap[note.value])
+    this.$frequency.childNodes[0].textContent = parseFloat(note.frequency).toFixed(1)
+  }
 }
 
 Note.prototype.setAutoMode = function (active) {
