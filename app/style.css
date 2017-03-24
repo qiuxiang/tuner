@@ -1,7 +1,12 @@
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #2c3e50;
   margin: 0;
+  height: 100%;
 }
 
 .note {
@@ -121,20 +126,6 @@ body {
 }
 
 .frequency-bars {
-  width: 400px;
-  height: 50%;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -200px;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.frequency-bar {
-  display: inline-block;
-  background: #ecf0f1;
-  transition: height 0.1s;
   position: absolute;
   bottom: 0;
 }
@@ -146,11 +137,5 @@ body {
 
   .note {
     width: 100%;
-  }
-
-  .frequency-bars {
-    width: 100%;
-    left: 0;
-    margin-left: 0;
   }
 }

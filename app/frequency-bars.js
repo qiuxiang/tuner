@@ -2,36 +2,24 @@
  * the frequency histogram
  *
  * @param {string} selector
- * @param {int} bars - the bars number
  * @constructor
  */
-var FrequencyBars = function (selector, bars) {
-  this.$root = document.querySelector(selector)
-  this.$bars = []
-  this.initBars(bars)
+var FrequencyBars = function (selector) {
+  this.$canvas = document.querySelector(selector)
+  this.$canvas.width = document.body.clientWidth
+  this.$canvas.height = document.body.clientHeight / 2
+  this.canvasContext = this.$canvas.getContext('2d')
 }
 
 /**
- * @param {int} bars - the bars number
- */
-FrequencyBars.prototype.initBars = function (bars) {
-  var barWidth = this.$root.clientWidth / bars - 1
-  for (var i = 0; i < bars; i += 1) {
-    var $bar = document.createElement('div')
-    $bar.className = 'frequency-bar'
-    $bar.style.width = barWidth + 'px'
-    $bar.style.left = (barWidth + 1) * i + 'px'
-    this.$bars.push($bar)
-    this.$root.appendChild($bar)
-  }
-}
-
-/**
- * @param {Array} data
+ * @param {Uint8Array} data
  */
 FrequencyBars.prototype.update = function (data) {
-  var $bars = this.$bars
-  data.forEach(function (value, i) {
-    $bars[i].style.height = value / 2 + 'px'
-  })
+  const length = 64 // 只取低频数据
+  const width = this.$canvas.width / length - 0.5
+  this.canvasContext.clearRect(0, 0, this.$canvas.width, this.$canvas.height)
+  for (var i = 0; i < length; i += 1) {
+    this.canvasContext.fillStyle = '#ecf0f1'
+    this.canvasContext.fillRect(i * (width + 0.5), this.$canvas.height - data[i], width, data[i])
+  }
 }
