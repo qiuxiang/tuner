@@ -22,7 +22,9 @@ Application.prototype.start = function () {
     }
   }
   this.tuner.start()
-  this.updateFrequencyBars()
+  if (!/Android/i.test(navigator.userAgent)) {
+    this.updateFrequencyBars()
+  }
 }
 
 Application.prototype.updateFrequencyBars = function () {

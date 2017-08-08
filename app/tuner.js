@@ -10,9 +10,10 @@ var Tuner = function () {
   this.noteStrings = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B']
   this.audioContext = new window.AudioContext()
   this.analyser = this.audioContext.createAnalyser()
+  this.analyser.fftSize = 32768
   this.scriptProcessor = this.audioContext.createScriptProcessor(this.bufferSize, 1, 1)
   this.pitchDetector = new (Module().AubioPitch)(
-    'yin', this.bufferSize, 1, this.audioContext.sampleRate)
+    'default', this.bufferSize, 1, this.audioContext.sampleRate)
 }
 
 Tuner.prototype.start = function () {
