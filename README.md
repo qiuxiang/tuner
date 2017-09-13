@@ -1,3 +1,3 @@
 The tuner based on web audio api
 
-![image](https://cloud.githubusercontent.com/assets/1709072/20591945/1ce1b0b4-b266-11e6-9af3-674ca6a89059.png)
+![](https://user-images.githubusercontent.com/1709072/30374834-e23d0bc2-98b8-11e7-91ae-8ac37bfd24b2.png)
