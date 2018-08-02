@@ -3,12 +3,14 @@ html {
 }
 
 body {
+  position: fixed;
   font-family: sans-serif;
   color: #2c3e50;
   margin: 0;
+  width: 100%;
   height: 100%;
   cursor: default;
-  user-select: none;
+  -webkit-user-select: none;
   -moz-user-select: none;
 }
 
@@ -50,6 +52,10 @@ body {
 
 .notes-list::-webkit-scrollbar {
   display: none;
+}
+
+.note {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .note span {
