@@ -90,7 +90,7 @@ Tuner.prototype.init = function() {
             name: self.noteStrings[note % 12],
             value: note,
             cents: self.getCents(frequency, note),
-            numbered: parseInt(note / 12) - 1,
+            octave: parseInt(note / 12) - 1,
             frequency: frequency
           })
         }

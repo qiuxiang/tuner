@@ -1,24 +1,24 @@
-const Note = function(selector, tuner) {
+const Notes = function(selector, tuner) {
   this.tuner = tuner
+  this.isAutoMode = true
   this.$root = document.querySelector(selector)
-  this.$mask = this.$root.querySelector('.note-mask')
-  this.$noteNames = this.$root.querySelector('.note-names')
-  this.$frequency = this.$root.querySelector('.note-frequency')
+  this.$notesList = this.$root.querySelector('.notes-list')
+  this.$frequency = this.$root.querySelector('.frequency')
   this.$notes = []
   this.$notesMap = {}
-  this.initNotes()
+  this.createNotes()
 }
 
-Note.prototype.initNotes = function() {
-  const minNumbered = 2
-  const maxNumbered = 5
-  for (var numbered = minNumbered; numbered <= maxNumbered; numbered += 1) {
+Notes.prototype.createNotes = function() {
+  const minOctave = 2
+  const maxOctave = 5
+  for (var octave = minOctave; octave <= maxOctave; octave += 1) {
     for (var n = 0; n < 12; n += 1) {
       const $note = document.createElement('div')
-      $note.className = 'note-name'
+      $note.className = 'note'
       $note.dataset.name = this.tuner.noteStrings[n]
-      $note.dataset.value = 12 * (numbered + 1) + n
-      $note.dataset.numbered = numbered.toString()
+      $note.dataset.value = 12 * (octave + 1) + n
+      $note.dataset.octave = octave.toString()
       $note.dataset.frequency = this.tuner.getStandardFrequency(
         $note.dataset.value
       )
@@ -27,10 +27,10 @@ Note.prototype.initNotes = function() {
         '<span class="note-sharp">' +
         ($note.dataset.name[1] || '') +
         '</span>' +
-        '<span class="note-numbered">' +
-        $note.dataset.numbered +
+        '<span class="note-octave">' +
+        $note.dataset.octave +
         '</span>'
-      this.$noteNames.appendChild($note)
+      this.$notesList.appendChild($note)
       this.$notes.push($note)
       this.$notesMap[$note.dataset.value] = $note
     }
@@ -39,7 +39,11 @@ Note.prototype.initNotes = function() {
   const self = this
   this.$notes.forEach(function($note) {
     $note.addEventListener('click', function() {
-      const $active = self.$noteNames.querySelector('.active')
+      if (self.isAutoMode) {
+        return
+      }
+
+      const $active = self.$notesList.querySelector('.active')
       if ($active === this) {
         self.tuner.stop()
         $active.classList.remove('active')
@@ -51,21 +55,21 @@ Note.prototype.initNotes = function() {
   })
 }
 
-Note.prototype.active = function($note) {
+Notes.prototype.active = function($note) {
   this.clearActive()
   $note.classList.add('active')
-  this.$noteNames.scrollLeft =
-    $note.offsetLeft - (this.$noteNames.clientWidth - $note.clientWidth) / 2
+  this.$notesList.scrollLeft =
+    $note.offsetLeft - (this.$notesList.clientWidth - $note.clientWidth) / 2
 }
 
-Note.prototype.clearActive = function() {
-  const $active = this.$noteNames.querySelector('.active')
+Notes.prototype.clearActive = function() {
+  const $active = this.$notesList.querySelector('.active')
   if ($active) {
     $active.classList.remove('active')
   }
 }
 
-Note.prototype.update = function(note) {
+Notes.prototype.update = function(note) {
   if (note.value in this.$notesMap) {
     this.active(this.$notesMap[note.value])
     this.$frequency.childNodes[0].textContent = parseFloat(
@@ -74,11 +78,9 @@ Note.prototype.update = function(note) {
   }
 }
 
-Note.prototype.setAutoMode = function(active) {
-  if (active) {
-    this.$mask.style.display = 'block'
-  } else {
+Notes.prototype.toggleAutoMode = function() {
+  if (this.isAutoMode) {
     this.clearActive()
-    this.$mask.style.display = 'none'
   }
+  this.isAutoMode = !this.isAutoMode
 }

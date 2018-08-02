@@ -7,9 +7,12 @@ body {
   color: #2c3e50;
   margin: 0;
   height: 100%;
+  cursor: default;
+  user-select: none;
+  -moz-user-select: none;
 }
 
-.note {
+.notes {
   margin: auto;
   width: 400px;
   position: absolute;
@@ -19,15 +22,7 @@ body {
   text-align: center;
 }
 
-.note-mask {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 120px;
-  background: -webkit-linear-gradient(left, #fff, rgba(255, 255, 255, 0), #fff);
-}
-
-.note-name {
+.note {
   font-size: 90px;
   font-weight: bold;
   position: relative;
@@ -36,23 +31,28 @@ body {
   padding-left: 10px;
 }
 
-.note-name.active {
+.note.active {
   color: #e74c3c;
 }
 
-.note-names {
+.notes-list {
   overflow: auto;
+  overflow: -moz-scrollbars-none;
   white-space: nowrap;
-  cursor: default;
-  user-select: none;
   -ms-overflow-style: none;
+  -webkit-mask-image: -webkit-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0),
+    #fff,
+    rgba(255, 255, 255, 0)
+  );
 }
 
-.note-names::-webkit-scrollbar {
+.notes-list::-webkit-scrollbar {
   display: none;
 }
 
-.note-name span {
+.note span {
   position: absolute;
   right: 0.25em;
   font-size: 40%;
@@ -63,15 +63,15 @@ body {
   top: 0.3em;
 }
 
-.note-numbered {
+.note-octave {
   bottom: 0.3em;
 }
 
-.note-frequency {
+.frequency {
   font-size: 32px;
 }
 
-.note-frequency span {
+.frequency span {
   font-size: 50%;
   margin-left: 0.25em;
 }
@@ -134,7 +134,11 @@ body {
     width: 100%;
   }
 
-  .note {
+  .notes {
     width: 100%;
   }
+}
+
+.swal-button {
+  background: #2c3e50;
 }
