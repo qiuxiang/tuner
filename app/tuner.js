@@ -1,9 +1,4 @@
 const Tuner = function() {
-  window.AudioContext = window.AudioContext || window.webkitAudioContext
-  if (!window.AudioContext) {
-    return alert('AudioContext not supported')
-  }
-
   this.middleA = 440
   this.semitone = 69
   this.bufferSize = 4096
@@ -21,6 +16,45 @@ const Tuner = function() {
     'A♯',
     'B'
   ]
+
+  this.initGetUserMedia()
+}
+
+Tuner.prototype.initGetUserMedia = function() {
+  window.AudioContext = window.AudioContext || window.webkitAudioContext
+  if (!window.AudioContext) {
+    return alert('AudioContext not supported')
+  }
+
+  // Older browsers might not implement mediaDevices at all, so we set an empty object first
+  if (navigator.mediaDevices === undefined) {
+    navigator.mediaDevices = {}
+  }
+
+  // Some browsers partially implement mediaDevices. We can't just assign an object
+  // with getUserMedia as it would overwrite existing properties.
+  // Here, we will just add the getUserMedia property if it's missing.
+  if (navigator.mediaDevices.getUserMedia === undefined) {
+    navigator.mediaDevices.getUserMedia = function(constraints) {
+      // First get ahold of the legacy getUserMedia, if present
+      const getUserMedia =
+        navigator.webkitGetUserMedia || navigator.mozGetUserMedia
+
+      // Some browsers just don't implement it - return a rejected promise with an error
+      // to keep a consistent interface
+      if (!getUserMedia) {
+        alert('getUserMedia is not implemented in this browser')
+      }
+
+      // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
+      return new Promise(function(resolve, reject) {
+        getUserMedia.call(navigator, constraints, resolve, reject)
+      })
+    }
+  }
+}
+
+Tuner.prototype.init = function() {
   this.audioContext = new window.AudioContext()
   this.analyser = this.audioContext.createAnalyser()
   this.scriptProcessor = this.audioContext.createScriptProcessor(
@@ -28,43 +62,30 @@ const Tuner = function() {
     1,
     1
   )
-  this.pitchDetector = new (Module()).AubioPitch(
-    'default',
-    this.bufferSize,
-    1,
-    this.audioContext.sampleRate
-  )
-}
-
-Tuner.prototype.start = function() {
-  navigator.getUserMedia =
-    navigator.getUserMedia || navigator.webkitGetUserMedia
-  if (!navigator.getUserMedia) {
-    return alert('getUserMedia not supported')
-  }
 
   const self = this
-  navigator.getUserMedia(
-    {
-      audio: {
-        mandatory: {
-          googEchoCancellation: false,
-          googAutoGainControl: false,
-          googNoiseSuppression: false,
-          googHighpassFilter: false
-        }
-      }
-    },
-    function(stream) {
+
+  Module().then(function(module) {
+    self.pitchDetector = new module.AubioPitch(
+      'default',
+      self.bufferSize,
+      1,
+      self.audioContext.sampleRate
+    )
+  })
+
+  navigator.mediaDevices
+    .getUserMedia({ audio: true })
+    .then(function(stream) {
       self.audioContext.createMediaStreamSource(stream).connect(self.analyser)
       self.analyser.connect(self.scriptProcessor)
       self.scriptProcessor.connect(self.audioContext.destination)
       self.scriptProcessor.addEventListener('audioprocess', function(event) {
-        var frequency = self.pitchDetector.do(
+        const frequency = self.pitchDetector.do(
           event.inputBuffer.getChannelData(0)
         )
         if (frequency && self.onNoteDetected) {
-          var note = self.getNote(frequency)
+          const note = self.getNote(frequency)
           self.onNoteDetected({
             name: self.noteStrings[note % 12],
             value: note,
@@ -74,11 +95,10 @@ Tuner.prototype.start = function() {
           })
         }
       })
-    },
-    function(error) {
+    })
+    .catch(function(error) {
       alert(error.name + ': ' + error.message)
-    }
-  )
+    })
 }
 
 /**
@@ -88,7 +108,7 @@ Tuner.prototype.start = function() {
  * @returns {number}
  */
 Tuner.prototype.getNote = function(frequency) {
-  var note = 12 * (Math.log(frequency / this.middleA) / Math.log(2))
+  const note = 12 * (Math.log(frequency / this.middleA) / Math.log(2))
   return Math.round(note) + this.semitone
 }
 

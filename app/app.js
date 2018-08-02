@@ -3,7 +3,7 @@ const Application = function() {
   this.note = new Note('.note', this.tuner)
   this.meter = new Meter('.meter')
   this.frequencyBars = new FrequencyBars('.frequency-bars')
-  this.frequencyData = new Uint8Array(this.tuner.analyser.frequencyBinCount)
+  this.frequencyData = new Uint8Array(0)
   this.automaticMode = true
   this.update({ name: 'A', frequency: 440, numbered: 4, value: 69, cents: 0 })
 }
@@ -19,15 +19,19 @@ Application.prototype.start = function() {
       }
     }
   }
-  this.tuner.start()
   if (!/Android/i.test(navigator.userAgent)) {
     this.updateFrequencyBars()
   }
+  swal('Welcome!').then(function() {
+    self.tuner.init()
+  })
 }
 
 Application.prototype.updateFrequencyBars = function() {
-  this.tuner.analyser.getByteFrequencyData(this.frequencyData)
-  this.frequencyBars.update(this.frequencyData)
+  if (this.tuner.analyser) {
+    this.tuner.analyser.getByteFrequencyData(this.frequencyData)
+    this.frequencyBars.update(this.frequencyData)
+  }
   requestAnimationFrame(this.updateFrequencyBars.bind(this))
 }
 
@@ -38,7 +42,7 @@ Application.prototype.update = function(note) {
 
 // noinspection JSUnusedGlobalSymbols
 Application.prototype.toggleAutoMode = function() {
-  this.automaticMode = !this.automaticMode;
+  this.automaticMode = !this.automaticMode
   this.note.setAutoMode(this.automaticMode)
 }
 
