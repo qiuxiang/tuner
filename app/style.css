@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: sans-serif;
   color: #2c3e50;
   margin: 0;
   height: 100%;
@@ -36,7 +36,6 @@ body {
   padding-left: 10px;
 }
 
-
 .note-name.active {
   color: #e74c3c;
 }
@@ -61,11 +60,11 @@ body {
 }
 
 .note-sharp {
-  top: 0.30em;
+  top: 0.3em;
 }
 
 .note-numbered {
-  bottom: 0.30em;
+  bottom: 0.3em;
 }
 
 .note-frequency {
