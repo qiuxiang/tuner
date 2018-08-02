@@ -3,7 +3,6 @@ const Application = function() {
   this.note = new Note('.note', this.tuner)
   this.meter = new Meter('.meter')
   this.frequencyBars = new FrequencyBars('.frequency-bars')
-  this.frequencyData = new Uint8Array(0)
   this.automaticMode = true
   this.update({ name: 'A', frequency: 440, numbered: 4, value: 69, cents: 0 })
 }
@@ -24,6 +23,7 @@ Application.prototype.start = function() {
   }
   swal('Welcome!').then(function() {
     self.tuner.init()
+    self.frequencyData = new Uint8Array(self.tuner.analyser.frequencyBinCount)
   })
 }
 
