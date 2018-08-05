@@ -54,26 +54,7 @@ Tuner.prototype.initGetUserMedia = function() {
   }
 }
 
-Tuner.prototype.init = function() {
-  this.audioContext = new window.AudioContext()
-  this.analyser = this.audioContext.createAnalyser()
-  this.scriptProcessor = this.audioContext.createScriptProcessor(
-    this.bufferSize,
-    1,
-    1
-  )
-
-  const self = this
-
-  Aubio().then(function(aubio) {
-    self.pitchDetector = new aubio.Pitch(
-      'default',
-      self.bufferSize,
-      1,
-      self.audioContext.sampleRate
-    )
-  })
-
+Tuner.prototype.startRecord = function () {
   navigator.mediaDevices
     .getUserMedia({ audio: true })
     .then(function(stream) {
@@ -99,6 +80,28 @@ Tuner.prototype.init = function() {
     .catch(function(error) {
       alert(error.name + ': ' + error.message)
     })
+}
+
+Tuner.prototype.init = function() {
+  this.audioContext = new window.AudioContext()
+  this.analyser = this.audioContext.createAnalyser()
+  this.scriptProcessor = this.audioContext.createScriptProcessor(
+    this.bufferSize,
+    1,
+    1
+  )
+
+  const self = this
+
+  Aubio().then(function(aubio) {
+    self.pitchDetector = new aubio.Pitch(
+      'default',
+      self.bufferSize,
+      1,
+      self.audioContext.sampleRate
+    )
+    self.startRecord()
+  })
 }
 
 /**
