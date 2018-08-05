@@ -55,6 +55,7 @@ Tuner.prototype.initGetUserMedia = function() {
 }
 
 Tuner.prototype.startRecord = function () {
+  const self = this
   navigator.mediaDevices
     .getUserMedia({ audio: true })
     .then(function(stream) {
