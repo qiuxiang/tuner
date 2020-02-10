@@ -24,9 +24,7 @@ Application.prototype.start = function() {
     self.frequencyData = new Uint8Array(self.tuner.analyser.frequencyBinCount)
   })
 
-  if (!/Android/i.test(navigator.userAgent)) {
-    this.updateFrequencyBars()
-  }
+  this.updateFrequencyBars()
 }
 
 Application.prototype.updateFrequencyBars = function() {
