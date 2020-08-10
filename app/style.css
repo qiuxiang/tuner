@@ -17,7 +17,7 @@ body {
 .notes {
   margin: auto;
   width: 400px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 0;
   right: 0;
@@ -83,7 +83,7 @@ body {
 }
 
 .meter {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 50%;
@@ -131,7 +131,7 @@ body {
 }
 
 .frequency-bars {
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 
@@ -147,4 +147,14 @@ body {
 
 .swal-button {
   background: #2c3e50;
+}
+
+.a4 {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.a4 span {
+  color: #e74c3c;
 }
