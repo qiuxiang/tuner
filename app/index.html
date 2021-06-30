@@ -1,28 +1,45 @@
 <!doctype html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-  <title>Online Tuner</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>Online Tuner</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
+
 <body>
-<canvas class="frequency-bars"></canvas>
-<div class="meter">
-  <div class="meter-dot"></div>
-  <div class="meter-pointer"></div>
-</div>
-<div class="notes">
-  <div class="notes-list"></div>
-  <div class="frequency"> <span>Hz</span></div>
-</div>
-<div class="a4">A<sub>4</sub> = <span>440</span> Hz</div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="aubio.js"></script>
-<script src="tuner.js"></script>
-<script src="meter.js"></script>
-<script src="frequency-bars.js"></script>
-<script src="notes.js"></script>
-<script src="app.js"></script>
+    <a href="https://github.com/hasanbahadirkoca/tuner" target="blank"><img class="tuner-logo" src="tuner.png" alt="Tuner Logo"></a>
+
+    <!-- Plus & Minus -->
+    <div class="">
+        <span class="minus">-</span>
+        <canvas class="frequency-bars"></canvas>
+        <span class="plus">+</span>
+    </div>
+    <!------------------>
+
+    <div class="meter">
+        <div class="meter-dot color-change"></div>
+        <div class="meter-pointer color-change" id="meter-pointer"></div>
+    </div>
+    <div class="notes">
+        <div class="notes-list"></div>
+        <div class="frequency"> <span>Hz</span></div>
+    </div>
+    <div class="a4">A<sub>4</sub> = <span>440</span> Hz</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="aubio.js"></script>
+    <script src="tuner.js"></script>
+    <script src="meter.js"></script>
+    <script src="frequency-bars.js"></script>
+    <script src="notes.js"></script>
+    <script src="app.js"></script>
+    <script src="color-change.js"></script>
 </body>
+
 </html>
