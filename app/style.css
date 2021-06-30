@@ -135,26 +135,66 @@ body {
   bottom: 0;
 }
 
-@media (max-width: 768px) {
-  .meter {
-    width: 100%;
-  }
-
-  .notes {
-    width: 100%;
-  }
-}
-
 .swal-button {
   background: #2c3e50;
 }
 
 .a4 {
-  position: absolute;
-  top: 16px;
+  position: fixed;
+  bottom: 16px;
   left: 16px;
 }
 
 .a4 span {
   color: #e74c3c;
+}
+
+/* Plus & Minus */
+
+.plus {
+  position: fixed;
+  right: 35%;
+  top: 25%;
+  font-size: 50px;
+}
+
+.minus {
+  position: fixed;
+  left: 35%;
+  top: 25%;
+  font-size: 50px;
+}
+
+/* Logo & Piano */
+
+.tuner-logo {
+  position: fixed;
+  width: 100px;
+  top: 16px;
+  left: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .meter {
+    width: 100%;
+  }
+  .notes {
+    width: 100%;
+  }
+  .minus {
+    left: 10%;
+    top: 25%;
+    font-size: 40px;
+  }
+  .plus {
+    float: center;
+    right: 10%;
+    top: 25%;
+    font-size: 40px;
+  }
+  .tuner-logo {
+    width: 70px;
+    top: 10px;
+    left: 10px;
+  }
 }
