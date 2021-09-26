@@ -94,7 +94,7 @@ Tuner.prototype.init = function() {
 
   const self = this
 
-  Aubio().then(function(aubio) {
+  aubio().then(function(aubio) {
     self.pitchDetector = new aubio.Pitch(
       'default',
       self.bufferSize,
