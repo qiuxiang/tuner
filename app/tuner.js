@@ -153,7 +153,9 @@ Tuner.prototype.play = function (frequency) {
   this.oscillator.frequency.value = frequency;
 };
 
-Tuner.prototype.stop = function () {
-  this.oscillator.stop();
-  this.oscillator = null;
+Tuner.prototype.stopOscillator = function () {
+  if (this.oscillator) {
+    this.oscillator.stop();
+    this.oscillator = null;
+  }
 };

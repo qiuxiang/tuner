@@ -49,7 +49,7 @@ Notes.prototype.createNotes = function () {
 
       const $active = self.$notesList.querySelector(".active");
       if ($active === this) {
-        self.tuner.stop();
+        self.tuner.stopOscillator();
         $active.classList.remove("active");
       } else {
         self.tuner.play(this.dataset.frequency);
@@ -83,8 +83,9 @@ Notes.prototype.update = function (note) {
 };
 
 Notes.prototype.toggleAutoMode = function () {
-  if (this.isAutoMode) {
-    this.clearActive();
+  if (!this.isAutoMode) {
+    this.tuner.stopOscillator();
   }
+  this.clearActive();
   this.isAutoMode = !this.isAutoMode;
 };
