@@ -157,3 +157,9 @@ body {
 .a4 span {
   color: #e74c3c;
 }
+
+.auto {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}

@@ -60,6 +60,10 @@ Application.prototype.start = function () {
   });
 
   this.updateFrequencyBars();
+
+  document.querySelector(".auto input").addEventListener("change", () => {
+    this.notes.toggleAutoMode();
+  });
 };
 
 Application.prototype.updateFrequencyBars = function () {
@@ -73,11 +77,6 @@ Application.prototype.updateFrequencyBars = function () {
 Application.prototype.update = function (note) {
   this.notes.update(note);
   this.meter.update((note.cents / 50) * 45);
-};
-
-// noinspection JSUnusedGlobalSymbols
-Application.prototype.toggleAutoMode = function () {
-  this.notes.toggleAutoMode();
 };
 
 const app = new Application();
