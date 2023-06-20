@@ -3,7 +3,7 @@ const Application = function () {
   this.tuner = new Tuner(this.a4);
   this.notes = new Notes(".notes", this.tuner);
   this.meter = new Meter(".meter");
-  this.frequencyBars = new FrequencyBars(".frequency-bars");
+  this.frequencyBars = new FrequencyLines(".frequency-lines");
   this.update({
     name: "A",
     frequency: this.a4,
@@ -21,13 +21,21 @@ Application.prototype.initA4 = function () {
 
 Application.prototype.start = function () {
   const self = this;
+  const debounceTime = 0; // Wait for 500ms of stable note before updating
+  let lastNoteUpdate = 0;
+  let lastNoteName = '';
 
   this.tuner.onNoteDetected = function (note) {
     if (self.notes.isAutoMode) {
-      if (self.lastNote === note.name) {
-        self.update(note);
+      const currentTime = Date.now();
+      if (note.name === lastNoteName) {
+        if (currentTime - lastNoteUpdate > debounceTime) {
+          lastNoteUpdate = currentTime;
+          self.update(note);
+        }
       } else {
-        self.lastNote = note.name;
+        lastNoteUpdate = currentTime;
+        lastNoteName = note.name;
       }
     }
   };

@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <canvas class="frequency-bars"></canvas>
+    <canvas class="frequency-lines"></canvas>
     <div class="meter">
+      <div id="tunedArea" class="meter-scale-tuned"></div>
       <div class="meter-dot"></div>
       <div class="meter-pointer"></div>
     </div>
@@ -26,12 +27,14 @@
       Auto
       <input type="checkbox" checked />
     </label>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dsp.js/1.0.1/dsp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdn.jsdelivr.net/npm/aubiojs@0.1.1/build/aubio.min.js"></script>
     <script src="tuner.js"></script>
     <script src="meter.js"></script>
-    <script src="frequency-bars.js"></script>
+    <script src="frequency-line.js"></script>
     <script src="notes.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
+

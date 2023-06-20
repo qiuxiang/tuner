@@ -1,11 +1,12 @@
 html {
   height: 100%;
+  background: #121212;
 }
 
 body {
   position: fixed;
   font-family: sans-serif;
-  color: #2c3e50;
+  color: #B0BEC5; /* Light blue-grey text */
   margin: 0;
   width: 100%;
   height: 100%;
@@ -33,7 +34,7 @@ body {
 }
 
 .note.active {
-  color: #e74c3c;
+  color: #F48FB1; /* Active note color to pink */
 }
 
 .notes-list {
@@ -43,9 +44,9 @@ body {
   -ms-overflow-style: none;
   -webkit-mask-image: -webkit-linear-gradient(
     left,
-    rgba(255, 255, 255, 0),
-    #fff,
-    rgba(255, 255, 255, 0)
+    rgba(0, 0, 0, 0),
+    #121212,
+    rgba(0, 0, 0, 0)
   );
 }
 
@@ -62,6 +63,7 @@ body {
   right: 0.25em;
   font-size: 40%;
   font-weight: normal;
+  color: #78909C; /* Dark blue-grey for note span */
 }
 
 .note-sharp {
@@ -94,7 +96,7 @@ body {
 .meter-pointer {
   width: 2px;
   height: 100%;
-  background: #2c3e50;
+  background: #B0BEC5; /* Light blue-grey */
   transform: rotate(45deg);
   transform-origin: bottom;
   transition: transform 0.5s;
@@ -105,7 +107,7 @@ body {
 .meter-dot {
   width: 10px;
   height: 10px;
-  background: #2c3e50;
+  background: #B0BEC5; /* Light blue-grey */
   border-radius: 50%;
   position: absolute;
   bottom: -5px;
@@ -119,7 +121,7 @@ body {
   transform-origin: bottom;
   transition: transform 0.2s;
   box-sizing: border-box;
-  border-top: 10px solid;
+  border-top: 10px solid #B0BEC5; /* Light blue-grey */
   position: absolute;
   right: 50%;
 }
@@ -129,8 +131,25 @@ body {
   border-top-width: 20px;
 }
 
+.meter-scale-tuned {
+  width: 16px;
+  height: 10%;  /* adjust this to change the size of the tuned region */
+  background: #4CAF50;  /* use the Material theme green */
+  position: absolute;
+  bottom: 92%;  /* adjust this value to position the tuned region at the top */
+  right: 50%;  /* center the tuned region horizontally */
+  margin-right: -7px;  /* centering adjustment */
+  box-shadow: 0 0 10px #4CAF50, 0 0 10px #4CAF50;  /* glow effect */
+  transform: rotate(0deg);  /* set rotation to 0 to place it at the top */
+}
+
 .frequency-bars {
   position: fixed;
+  bottom: 0;
+}
+
+.frequency-line {
+  position: absolute;
   bottom: 0;
 }
 
@@ -145,7 +164,7 @@ body {
 }
 
 .swal-button {
-  background: #2c3e50;
+  background: #B0BEC5; /* Light blue-grey */
 }
 
 .a4 {
@@ -155,7 +174,7 @@ body {
 }
 
 .a4 span {
-  color: #e74c3c;
+  color: #F48FB1; /* Pink */
 }
 
 .auto {
@@ -163,3 +182,8 @@ body {
   top: 16px;
   right: 16px;
 }
+
+.note.in-tune {
+  color: #4CAF50; /* Material Green for in-tune notes */
+}
+

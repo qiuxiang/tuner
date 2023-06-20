@@ -1,0 +1,43 @@
+/**
+ * the frequency line graph
+ *
+ * @param {string} selector
+ * @constructor
+ */
+const FrequencyLines = function (selector) {
+  this.$canvas = document.querySelector(selector);
+  this.$canvas.width = document.body.clientWidth;
+  this.$canvas.height = document.body.clientHeight / 2;
+  this.canvasContext = this.$canvas.getContext("2d");
+};
+
+/**
+ * @param {Uint8Array} data
+ */
+FrequencyLines.prototype.update = function (data) {
+  const length = 64; // low frequency only
+  const width = this.$canvas.width / length;
+  this.canvasContext.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
+  
+  // Start the line from the bottom of the graph
+  this.canvasContext.beginPath();
+  this.canvasContext.moveTo(0, this.$canvas.height);
+  
+  for (var i = 0; i < length; i += 1) {
+    // Draw a line to the next data point
+    this.canvasContext.lineTo(
+      i * width,
+      this.$canvas.height - data[i]
+    );
+  }
+  
+  // End the line at the bottom of the graph
+  this.canvasContext.lineTo(
+    this.$canvas.width,
+    this.$canvas.height
+  );
+
+  this.canvasContext.strokeStyle = "#ecf0f1";
+  this.canvasContext.stroke();
+};
+

@@ -25,4 +25,15 @@ Meter.prototype.init = function () {
  */
 Meter.prototype.update = function (deg) {
   this.$pointer.style.transform = "rotate(" + deg + "deg)";
+  const tunedArea = document.getElementById("tunedArea");
+ 
+  // Adjust these values to match the actual range of your "tuned" area
+  const minTunedDegree = -4;  
+  const maxTunedDegree = 4;
+  
+  if (deg >= minTunedDegree && deg <= maxTunedDegree) {
+    tunedArea.style.visibility = "visible";
+  } else {
+    tunedArea.style.visibility = "hidden";
+  }
 };
