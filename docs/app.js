@@ -24,6 +24,23 @@ Application.prototype.start = function () {
   const debounceTime = 0; // Wait for 500ms of stable note before updating
   let lastNoteUpdate = 0;
   let lastNoteName = '';
+  
+  // Request wake lock
+  function requestWakeLock() {
+    if ('wakeLock' in navigator) {
+      navigator.wakeLock.request('screen')
+        .then(function(wakeLock) {
+          console.log('Screen wake lock acquired');
+        })
+        .catch(function(error) {
+          console.error('Failed to acquire screen wake lock:', error);
+        });
+    } else {
+      console.log('Screen wake lock API not supported');
+    }
+  }
+  // Call the function to request the wake lock
+  requestWakeLock();
 
   this.tuner.onNoteDetected = function (note) {
     if (self.notes.isAutoMode) {
