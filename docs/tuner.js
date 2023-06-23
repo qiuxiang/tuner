@@ -16,10 +16,6 @@ const Tuner = function (a4) {
     "A♯",
     "B",
   ];
-  // New state variables:
-  this.currentNote = null;
-  this.currentNoteStartTime = null;
-  this.NOTE_SWITCH_THRESHOLD = 0; // e.g., 1 second.
 
   this.initGetUserMedia();
 };
@@ -58,23 +54,8 @@ Tuner.prototype.initGetUserMedia = function () {
   }
 };
 
-
 Tuner.prototype.startRecord = function () {
   const self = this;
-  
-  // Function to create a bandpass filter
-  // function createBandpassFilter(context) {
-  //  const filter = context.createBiquadFilter();
-  //  filter.type = "bandpass";
-  //  filter.frequency.value = 84;
-  //  filter.Q.value = Math.log(1400/60) / Math.LN2;
-  //  return filter;
-  //}
-
-  const noiseGateThreshold = 0.05; // adjust to suitable level
-  const detectionCooldown = 0; // in milliseconds
-  let lastDetectionTime = 0;
-  
   navigator.mediaDevices
     .getUserMedia({ audio: true })
     .then(function (stream) {
@@ -82,40 +63,9 @@ Tuner.prototype.startRecord = function () {
       self.analyser.connect(self.scriptProcessor);
       self.scriptProcessor.connect(self.audioContext.destination);
       self.scriptProcessor.addEventListener("audioprocess", function (event) {
-        const inputData = event.inputBuffer.getChannelData(0);
-        const rms = Math.sqrt(inputData.reduce((a, b) => a + b * b, 0) / inputData.length);
-        
-        if (rms < noiseGateThreshold) {
-          // RMS below threshold, consider it noise and ignore
-          return;
-        }
-      
-        const currentTime = Date.now();
-        if (currentTime - lastDetectionTime < detectionCooldown) {
-          // if we are still within the cooldown period, don't detect another note
-          return;
-        }
-      
         const frequency = self.pitchDetector.do(
           event.inputBuffer.getChannelData(0)
         );
-      
-        if (frequency) {
-          const note = self.getNote(frequency);
-        
-          // If we're still on the same note, do nothing. 
-          // If we've switched to a new note, reset the current note and the start time:
-          if (note !== self.currentNote) {
-            self.currentNote = note;
-            self.currentNoteStartTime = currentTime;
-          }
-      
-          // If we have a current note and it's been less than the threshold time, ignore new notes:
-          if (self.currentNote !== null && currentTime - self.currentNoteStartTime < self.NOTE_SWITCH_THRESHOLD) {
-            return;
-          }
-        }
-        
         if (frequency && self.onNoteDetected) {
           const note = self.getNote(frequency);
           self.onNoteDetected({
@@ -125,10 +75,8 @@ Tuner.prototype.startRecord = function () {
             octave: parseInt(note / 12) - 1,
             frequency: frequency,
           });
-          // update the time of last detection
-          lastDetectionTime = currentTime;
         }
-      }); // This was the missing parenthesis
+      });
     })
     .catch(function (error) {
       alert(error.name + ": " + error.message);
@@ -148,7 +96,7 @@ Tuner.prototype.init = function () {
 
   aubio().then(function (aubio) {
     self.pitchDetector = new aubio.Pitch(
-      "yinfft",
+      "default",
       self.bufferSize,
       1,
       self.audioContext.sampleRate
@@ -189,18 +137,6 @@ Tuner.prototype.getCents = function (frequency, note) {
   return Math.floor(
     (1200 * Math.log(frequency / this.getStandardFrequency(note))) / Math.log(2)
   );
-};
-
-Tuner.prototype.createBandpassFilter = function() {
-  const filter = this.audioContext.createBiquadFilter();
-  // Set the type to bandpass
-  filter.type = "bandpass";
-  // Set the lower frequency limit (in Hertz) - Low E String
-  filter.frequency.value = 82; 
-  // Set the bandwidth of the filter (in Cents)
-  filter.Q.value = Math.log(1318/50) / Math.LN2;
-  
-  return filter;
 };
 
 /**
