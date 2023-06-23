@@ -72,7 +72,7 @@ Tuner.prototype.startRecord = function () {
   //}
 
   const noiseGateThreshold = 0.05; // adjust to suitable level
-  const detectionCooldown = 300; // in milliseconds
+  const detectionCooldown = 0; // in milliseconds
   let lastDetectionTime = 0;
   
   navigator.mediaDevices
