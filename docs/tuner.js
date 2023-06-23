@@ -19,7 +19,7 @@ const Tuner = function (a4) {
   // New state variables:
   this.currentNote = null;
   this.currentNoteStartTime = null;
-  this.NOTE_SWITCH_THRESHOLD = 100; // e.g., 1 second.
+  this.NOTE_SWITCH_THRESHOLD = 0; // e.g., 1 second.
 
   this.initGetUserMedia();
 };
@@ -63,16 +63,16 @@ Tuner.prototype.startRecord = function () {
   const self = this;
   
   // Function to create a bandpass filter
-  function createBandpassFilter(context) {
-    const filter = context.createBiquadFilter();
-    filter.type = "bandpass";
-    filter.frequency.value = 84;
-    filter.Q.value = Math.log(1400/60) / Math.LN2;
-    return filter;
-  }
+  // function createBandpassFilter(context) {
+  //  const filter = context.createBiquadFilter();
+  //  filter.type = "bandpass";
+  //  filter.frequency.value = 84;
+  //  filter.Q.value = Math.log(1400/60) / Math.LN2;
+  //  return filter;
+  //}
 
-  const noiseGateThreshold = 0.02; // adjust to suitable level
-  const detectionCooldown = 100; // in milliseconds
+  const noiseGateThreshold = 0.05; // adjust to suitable level
+  const detectionCooldown = 300; // in milliseconds
   let lastDetectionTime = 0;
   
   navigator.mediaDevices
@@ -198,7 +198,7 @@ Tuner.prototype.createBandpassFilter = function() {
   // Set the lower frequency limit (in Hertz) - Low E String
   filter.frequency.value = 82; 
   // Set the bandwidth of the filter (in Cents)
-  filter.Q.value = Math.log(1318/82) / Math.LN2;
+  filter.Q.value = Math.log(1318/50) / Math.LN2;
   
   return filter;
 };
