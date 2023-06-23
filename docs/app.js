@@ -21,7 +21,7 @@ Application.prototype.initA4 = function () {
 
 Application.prototype.start = function () {
   const self = this;
-  const debounceTime = 100; // Wait for 500ms of stable note before updating
+  const debounceTime = 0; // Wait for 500ms of stable note before updating
   let lastNoteUpdate = 0;
   let lastNoteName = '';
   
