@@ -20,6 +20,21 @@ const Tuner = function (a4) {
   this.initGetUserMedia();
 };
 
+Tuner.prototype.movingAverage = function(arr, windowSize) {
+    let result = [];
+    for (let i = 0; i < arr.length - windowSize + 1; i++) {
+        let sum = 0;
+        for (let j = 0; j < windowSize; j++) {
+            sum += arr[i + j];
+        }
+        result.push(sum / windowSize);
+    }
+    return result;
+}
+
+// Initialize detected frequencies array
+Tuner.prototype.detectedFrequencies = [];
+
 Tuner.prototype.initGetUserMedia = function () {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   if (!window.AudioContext) {
@@ -56,27 +71,52 @@ Tuner.prototype.initGetUserMedia = function () {
 
 Tuner.prototype.startRecord = function () {
   const self = this;
+  let currentNote = null;
+  let stableCount = 0;
+  const STABLE_LIMIT = 20; // This is the number of cycles the note has to remain the same to be considered stable.
+  let lastFrequency = null;
+
   navigator.mediaDevices
     .getUserMedia({ audio: true })
     .then(function (stream) {
       self.audioContext.createMediaStreamSource(stream).connect(self.analyser);
       self.analyser.connect(self.scriptProcessor);
       self.scriptProcessor.connect(self.audioContext.destination);
-      self.scriptProcessor.addEventListener("audioprocess", function (event) {
-        const frequency = self.pitchDetector.do(
-          event.inputBuffer.getChannelData(0)
-        );
-        if (frequency && self.onNoteDetected) {
-          const note = self.getNote(frequency);
-          self.onNoteDetected({
-            name: self.noteStrings[note % 12],
-            value: note,
-            cents: self.getCents(frequency, note),
-            octave: parseInt(note / 12) - 1,
-            frequency: frequency,
-          });
-        }
-      });
+	self.scriptProcessor.addEventListener("audioprocess", function (event) {
+	  let frequency = self.pitchDetector.do(
+	    event.inputBuffer.getChannelData(0)
+	  );
+	  if (frequency) {
+	    const TOLERANCE = 1.02;  // Adjust this value based on your needs. This means a 2% tolerance.
+	    
+	    // Ignore frequencies that are close multiples of the last frequency, as these are likely to be harmonics
+	    if (lastFrequency) {
+	      let ratio = frequency / lastFrequency;
+	      ratio = Math.round(ratio);
+	      if (ratio >= 0.98 * TOLERANCE && ratio <= TOLERANCE) {
+		frequency = lastFrequency;
+	      }
+	    }
+
+	    lastFrequency = frequency;
+	    const note = self.getNote(frequency);
+	    if (note !== currentNote) {
+	      stableCount = 0;
+	      currentNote = note;
+	    } else {
+	      stableCount++;
+	    }
+	    if (stableCount >= STABLE_LIMIT && self.onNoteDetected) {
+	      self.onNoteDetected({
+		name: self.noteStrings[note % 12],
+		value: note,
+		cents: self.getCents(frequency, note),
+		octave: parseInt(note / 12) - 1,
+		frequency: frequency,
+	      });
+	    }
+	  }
+	});
     })
     .catch(function (error) {
       alert(error.name + ": " + error.message);

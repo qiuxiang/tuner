@@ -21,43 +21,18 @@ Application.prototype.initA4 = function () {
 
 Application.prototype.start = function () {
   const self = this;
-  const debounceTime = 0; // Wait for 500ms of stable note before updating
-  let lastNoteUpdate = 0;
-  let lastNoteName = '';
-  
-  // Request wake lock
-  function requestWakeLock() {
-    if ('wakeLock' in navigator) {
-      navigator.wakeLock.request('screen')
-        .then(function(wakeLock) {
-          console.log('Screen wake lock acquired');
-        })
-        .catch(function(error) {
-          console.error('Failed to acquire screen wake lock:', error);
-        });
-    } else {
-      console.log('Screen wake lock API not supported');
-    }
-  }
-  // Call the function to request the wake lock
-  requestWakeLock();
 
   this.tuner.onNoteDetected = function (note) {
     if (self.notes.isAutoMode) {
-      const currentTime = Date.now();
-      if (note.name === lastNoteName) {
-        if (currentTime - lastNoteUpdate > debounceTime) {
-          lastNoteUpdate = currentTime;
-          self.update(note);
-        }
+      if (self.lastNote === note.name) {
+        self.update(note);
       } else {
-        lastNoteUpdate = currentTime;
-        lastNoteName = note.name;
+        self.lastNote = note.name;
       }
     }
   };
 
-  swal.fire("Please allow access to the mic").then(function () {
+  swal.fire("Welcome to online tuner!").then(function () {
     self.tuner.init();
     self.frequencyData = new Uint8Array(self.tuner.analyser.frequencyBinCount);
   });
