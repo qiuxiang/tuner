@@ -179,13 +179,13 @@ body {
 
 .screen {
   position: absolute;
-  top: 32px;
+  top: 16px;
   right: 16px;
 }
 
 .auto {
   position: absolute;
-  top: 16px;
+  top: 32px;
   right: 16px;
 }
 
