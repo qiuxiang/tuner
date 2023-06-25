@@ -16,7 +16,7 @@ const Tuner = function (a4) {
     "A♯",
     "B",
   ];
-  this.stableLimit = 5; // This is the number of cycles the note has to remain the same to be considered stable.
+  this.stableLimit = 3; // This is the number of cycles the note has to remain the same to be considered stable.
   this.tolerance = 1.08; // Adjust this value based on your needs. This means a 20% tolerance.
   this.smoothing = false; // this property will be used to enable/disable the smoothing algorithm
   this.smoothFrequencies = []; // this array will store the last few frequencies to average
