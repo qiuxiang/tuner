@@ -11,11 +11,23 @@ const FrequencyLines = function (selector) {
   this.canvasContext = this.$canvas.getContext("2d");
 };
 
+FrequencyLines.prototype.createGradient = function() {
+  const gradient = this.canvasContext.createLinearGradient(0, 0, this.$canvas.width, 0);
+
+  // Define the color stops here.
+  // Note: You can change these colors to any color of your choice.
+  gradient.addColorStop(0, '#81D4FA');  // Material Pink 200
+  gradient.addColorStop(0.5, '#F48FB1');  // Material Light Blue 200
+  gradient.addColorStop(1, '#A5D6A7');  // Material Light Green 200
+  
+  return gradient;
+}
+
 /**
  * @param {Uint8Array} data
  */
 FrequencyLines.prototype.update = function (data) {
-  const length = 64; // low frequency only
+  const length = 128; // low frequency only
   const width = this.$canvas.width / length;
   this.canvasContext.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
   
@@ -37,7 +49,8 @@ FrequencyLines.prototype.update = function (data) {
     this.$canvas.height
   );
 
-  this.canvasContext.strokeStyle = "#ecf0f1";
+  // Use the color gradient for the strokeStyle
+  this.canvasContext.strokeStyle = this.createGradient();
   this.canvasContext.stroke();
 };
 
