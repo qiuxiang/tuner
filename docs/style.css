@@ -187,3 +187,65 @@ body {
   color: #4CAF50; /* Material Green for in-tune notes */
 }
 
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #121212;  /* dark background */
+  color: #B0BEC5;  /* Light blue-grey text */
+  text-align: center;
+  padding: 10px 0; /* This gives some space above and below the text */
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap; /* to wrap items into next row if space is not enough */
+}
+
+footer a {
+  color: #B0BEC5; /* Light blue-grey text */
+  text-decoration: none; /* remove underline */
+  border: 2px solid #B0BEC5; /* border color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+footer a:hover {
+  background-color: #B0BEC5; /* Light blue-grey background when hovering */
+  color: #121212; /* Dark text color when hovering */
+}
+
+.higher-canvas {
+  position: relative;
+  bottom: 10%;  /* Adjust as needed */
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.social-profiles a {
+  color: #007bff;
+  font-size: 1.5em;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.social-profiles a:hover {
+  color: #0056b3;
+}
+
+
