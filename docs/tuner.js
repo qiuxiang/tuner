@@ -16,21 +16,35 @@ const Tuner = function (a4) {
     "A♯",
     "B",
   ];
+  this.stableLimit = 5; // This is the number of cycles the note has to remain the same to be considered stable.
+  this.tolerance = 1.08; // Adjust this value based on your needs. This means a 20% tolerance.
+  this.smoothing = false; // this property will be used to enable/disable the smoothing algorithm
+  this.smoothFrequencies = []; // this array will store the last few frequencies to average
 
   this.initGetUserMedia();
 };
 
-Tuner.prototype.movingAverage = function(arr, windowSize) {
-    let result = [];
-    for (let i = 0; i < arr.length - windowSize + 1; i++) {
-        let sum = 0;
-        for (let j = 0; j < windowSize; j++) {
-            sum += arr[i + j];
-        }
-        result.push(sum / windowSize);
-    }
-    return result;
-}
+Tuner.prototype.enableSmoothing = function() {
+  this.smoothing = true;
+};
+
+Tuner.prototype.disableSmoothing = function() {
+  this.smoothing = false;
+};
+
+Tuner.prototype.smoothFrequency = function(frequency) {
+  // Add new frequency to the array
+  this.smoothFrequencies.push(frequency);
+  
+  // If the array size exceeds 10 (you can adjust this value), remove the oldest frequency
+  if (this.smoothFrequencies.length > 10) {
+    this.smoothFrequencies.shift();
+  }
+
+  // Calculate the average frequency and return
+  const sum = this.smoothFrequencies.reduce((a, b) => a + b, 0);
+  return sum / this.smoothFrequencies.length;
+};
 
 // Initialize detected frequencies array
 Tuner.prototype.detectedFrequencies = [];
@@ -73,7 +87,6 @@ Tuner.prototype.startRecord = function () {
   const self = this;
   let currentNote = null;
   let stableCount = 0;
-  const STABLE_LIMIT = 20; // This is the number of cycles the note has to remain the same to be considered stable.
   let lastFrequency = null;
 
   navigator.mediaDevices
@@ -87,16 +100,18 @@ Tuner.prototype.startRecord = function () {
 	    event.inputBuffer.getChannelData(0)
 	  );
 	  if (frequency) {
-	    const TOLERANCE = 1.02;  // Adjust this value based on your needs. This means a 2% tolerance.
-	    
 	    // Ignore frequencies that are close multiples of the last frequency, as these are likely to be harmonics
 	    if (lastFrequency) {
 	      let ratio = frequency / lastFrequency;
 	      ratio = Math.round(ratio);
-	      if (ratio >= 0.98 * TOLERANCE && ratio <= TOLERANCE) {
+	      if (ratio >= 0.98 * self.tolerance && ratio <= self.tolerance) {
 		frequency = lastFrequency;
 	      }
 	    }
+	    // Apply smoothing if it is enabled
+            if (self.smoothing) {
+              frequency = self.smoothFrequency(frequency);
+            }
 
 	    lastFrequency = frequency;
 	    const note = self.getNote(frequency);
@@ -106,7 +121,7 @@ Tuner.prototype.startRecord = function () {
 	    } else {
 	      stableCount++;
 	    }
-	    if (stableCount >= STABLE_LIMIT && self.onNoteDetected) {
+	    if (stableCount >= self.stableLimit && self.onNoteDetected) {
 	      self.onNoteDetected({
 		name: self.noteStrings[note % 12],
 		value: note,
