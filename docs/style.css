@@ -18,7 +18,7 @@ body {
   margin: auto;
   width: 400px;
   position: fixed;
-  top: 50%;
+  top: 40%;
   left: 0;
   right: 0;
   text-align: center;
@@ -87,7 +87,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 50%;
+  bottom: 60%;
   width: 400px;
   height: 33%;
   margin: 0 auto 5vh auto;
@@ -187,6 +187,24 @@ body {
   color: #4CAF50; /* Material Green for in-tune notes */
 }
 
+.about {
+  bottom: 60%;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  color: #B0BEC5;  /* Light blue-grey text */
+  text-align: justify;
+}
+
+.about h2 {
+  color: #F48FB1;  /* Pink */
+  text-align: center;
+}
+
+.about ul {
+  padding-left: 20px;
+}
+
 footer {
   position: fixed;
   left: 0;
@@ -239,7 +257,7 @@ footer a:hover {
 
 .social-profiles a {
   color: #007bff;
-  font-size: 1.5em;
+  font-size: 1em;
   margin-right: 10px;
   transition: color 0.3s ease;
 }
