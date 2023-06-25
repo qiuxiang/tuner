@@ -177,6 +177,12 @@ body {
   color: #F48FB1; /* Pink */
 }
 
+.screen {
+  position: absolute;
+  top: 32px;
+  right: 16px;
+}
+
 .auto {
   position: absolute;
   top: 16px;
