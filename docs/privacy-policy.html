@@ -2,13 +2,33 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Privacy Policy</title>
     <link rel="stylesheet" href="style.css" />
     <style>
 	body {
-	  overflow: auto;
+	  position: relative;
+	}
+	
+	#privacy-wrapper {
+	  padding: 20px; /* adding some padding around the text */
+	  line-height: 1.6; /* increasing line height for better readability */
+	  max-width: 800px; /* limit the width of the text to improve readability */
+	  margin: 0 auto; /* center the text block */
+	  color: #B0BEC5; /* Light blue-grey text */
+	  background-color: rgba(255, 255, 255, 0.1); /* adding a slight background color to distinguish the text area */
+	  border-radius: 5px; /* optional, adding some roundness to the borders */
+	  overflow-y: auto; /* adds scroll if content height exceeds container height */
+	}
+
+	#privacy-wrapper h2 {
+	  margin-top: 20px; /* adds spacing before the heading */
+	  color: #F48FB1; /* Pink for headings */
+	}
+
+	#privacy-wrapper ul {
+	  padding-left: 40px; /* indents the bullet points for readability */
 	}
 </style>
   </head>
@@ -62,6 +82,9 @@
 						<p>Our privacy policy applies only to our online activities and applies to visitors to our website in relation to the information they have provided and / or collected in StringTune.com. This policy does not apply to information collected offline or through channels other than this website.</p>
 						<h2>Allow</h2>
 						<p>By using our website, you agree to our privacy policy and its terms.</p>
+						<br>
+						<br>
+						<br>
 						<br>
 						</div>
     </main>

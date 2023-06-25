@@ -27,7 +27,7 @@ FrequencyLines.prototype.createGradient = function() {
  * @param {Uint8Array} data
  */
 FrequencyLines.prototype.update = function (data) {
-  const length = 128; // low frequency only
+  const length = 64; // low frequency only
   const width = this.$canvas.width / length;
   this.canvasContext.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
   
@@ -53,4 +53,5 @@ FrequencyLines.prototype.update = function (data) {
   this.canvasContext.strokeStyle = this.createGradient();
   this.canvasContext.stroke();
 };
+
 
