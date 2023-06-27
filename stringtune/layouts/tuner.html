@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aubiojs@0.1.1/build/aubio.min.js"></script>
+    <script src="https://unpkg.com/i18next@latest/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@latest/i18nextHttpBackend.min.js"></script>
+    <script src="/js/screenlock.js"></script>
+    <script src="/js/tuner.js"></script>
+    <script src="/js/meter.js"></script>
+    <script src="/js/frequency-line.js"></script>
+    <script src="/js/notes.js"></script>
+    <script src="/js/app.js"></script>
+    <canvas class="frequency-lines higher-canvas"></canvas>
+    <div class="meter">
+      <div id="tunedArea" class="meter-scale-tuned"></div>
+      <div class="meter-dot"></div>
+      <div class="meter-pointer"></div>
+    </div>
+    <div class="notes">
+      <div class="notes-list"></div>
+      <div class="frequency">
+        <span>Hz</span>
+      </div>
+    </div>
+    <div class="a4">A<sub>4</sub> = <span>440</span> Hz</div>
+    <label class="screen">
+      Keep Screen On
+      <input type="checkbox" id="screenLock" />
+    </label>
+    <label class="auto">
+      Auto
+      <input type="checkbox" checked />
+    </label>

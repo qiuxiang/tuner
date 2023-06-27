@@ -3,6 +3,8 @@ languageCode = 'en-us'
 title = 'StringTune Online Tuner - Best Online Instrument Tuner with mic'
 
 DefaultContentLanguage = "en"
+disableKinds = ["taxonomy", "taxonomyTerm"]
+theme = "stringtune-dark"
 
 [languages]
   [languages.en]
