@@ -1,0 +1,49 @@
+<!--
+    schema.org ld+json representation of either a BlogPosting or NewsArticle
+    see https://developers.google.com/search/docs/data-types/article
+-->
+
+{{ $1x1 := .Resources.GetMatch "images/primary/1x1.png" }}
+{{ $4x3 := .Resources.GetMatch "images/primary/4x3.png" }}
+{{ $16x9 := .Resources.GetMatch "images/primary/16x9.png" }}
+
+<!--
+    the org logo must meet Google's AMP publisher logo requirements
+    see https://developers.google.com/search/docs/data-types/article#logo-guidelines
+-->
+{{ $orgLogo := resources.Get "images/logos/logo.png" }}
+{{ $author := .Site.Params.author }}
+{{ $orgName := .Site.Params.contact.org_name }}
+
+{{ $articleType := "BlogPosting" }}
+{{ if eq .Section "press" }} {{ $articleType = "NewsArticle" }} {{ end }}
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": {{ $articleType }},
+        "name": {{ .Title }},
+        "mainEntityOfPage": {{ .Permalink }},
+        "headline": {{ .Title }},
+        "image": [
+            {{ $1x1.Permalink }},
+            {{ $4x3.Permalink }},
+            {{ $16x9.Permalink }}
+        ],
+        "description": {{ .Description }},
+        "author": {
+            "@type": "Person",
+            "name": {{ $author }}
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": {{ $orgName }},
+            "logo": {
+                "@type": "ImageObject",
+                "url": {{ $orgLogo.Permalink }}
+            }
+        },
+        "datePublished": {{ .PublishDate }},
+        "dateModified": {{ .Lastmod }}
+    }
+</script>

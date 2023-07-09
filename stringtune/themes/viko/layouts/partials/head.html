@@ -1,0 +1,57 @@
+{{ $options := (dict "outputStyle" "compressed") }}
+{{ $css := resources.Get "css/main.scss" | toCSS $options }}
+{{ $js := resources.Get "js/main.js" | resources.Fingerprint "md5" }}
+
+{{ if hugo.IsProduction }}
+    <!-- Purge unused css and minify it -->
+    {{ $css = $css | resources.PostCSS (dict "inlineImports" true) }}
+    {{ $css = $css | minify | resources.Fingerprint "md5" }}
+{{ end }}
+
+<title>
+    {{- if .IsHome -}}
+        {{ .Site.Title }}
+    {{- else -}}
+        {{ .Title }} | Acme Corp
+    {{- end -}}
+</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="{{ .Site.Params.author }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{ partial "favicons" . }}
+
+<!-- CSS & JS -->
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+<!-- // CSS & JS -->
+
+{{ partial "generator" . }}
+
+{{- if .IsHome -}}
+    <meta name="description" content="{{ .Site.Params.description }}">
+    {{ partial "ld+json/organisation.html" . }}
+    {{ partial "ld+json/website.html" . }}
+{{ else }}
+    <meta name="description" content="{{ .Description }}">
+    {{ if .Params.breadcrumb }}
+        {{- partial "ld+json/breadcrumb.html" . -}}
+    {{ end }}
+    {{ if  .OutputFormats.Get "amp" -}}
+        {{ partial "ld+json/article.html" . }}
+    {{ end }}
+{{ end }}
+
+{{ with .Params.no_index }}
+    <meta name="robots" content="noindex, noarchive">
+{{ end }}
+
+{{ with  .OutputFormats.Get "amp" -}}
+    <link rel="amphtml" href="{{ .Permalink }}">
+{{ end }}
+
+{{ printf "<!-- twitter & facebook -->" | safeHTML }}
+{{ partial "social/twitter_card.html" . }}
+{{ partial "social/facebook_card.html" . }}

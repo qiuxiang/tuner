@@ -1,0 +1,51 @@
+{{ define "main" }}
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-9">
+                    {{ with .Description }}
+                        <p class="subtitle vk-subtitle has-text-centered is-5">{{ . }}</p>
+                    {{ end }}
+
+                    {{ with .Content }}
+                        {{ . }}
+                    {{ end }}
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column is-9 has-text-centered">
+                    <h2 class="title is-4 mb-3">Recent stories</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vk-section">
+        <div class="container vk-alternate-children vk-has-bottom-border">
+            {{ range .Pages }}
+                {{ with $page := . }}
+                <div class="columns is-centered">
+                    <div class="column is-4">
+                        {{ with .Resources.GetMatch "images/primary/16x9.png" }}
+                            <figure class="image is-16by9">
+                                <img src="{{ .RelPermalink }}" alt="{{ $page.Title }}" />
+                            </figure>
+                        {{ end }}
+                    </div>
+
+                    <!-- cant use offset because of the column reverse css rule -->
+                    <div class="column is-1 is-hidden-mobile">&nbsp;</div>
+
+                    <div class="column is-4">
+                        <h2 class="title is-5 mb-5">{{ .Title }}</h2>
+                        <p class="mb-5">{{ .PublishDate.Format "2 Jan, 2006" }}</p>
+                        <p class="mb-5" >{{ .Description }}</p>
+                        <a href="{{ .RelPermalink }}">Read more</a>
+                    </div>
+                </div>
+                {{ end }}
+            {{ end }}
+        </div>
+    </section>
+{{ end }}

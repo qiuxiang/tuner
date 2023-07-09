@@ -4,7 +4,7 @@ title = 'StringTune Online Tuner - Best Online Instrument Tuner with mic'
 
 DefaultContentLanguage = "en"
 disableKinds = ["taxonomy", "taxonomyTerm"]
-theme = "stringtune-dark"
+theme = "viko"
 
 [languages]
   [languages.en]

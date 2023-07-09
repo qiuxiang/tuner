@@ -1,0 +1,27 @@
+{{ define "main" }}
+    {{ with $page := . }}
+        {{ with .Resources.GetMatch "images/primary/16x9.png" }}
+            <section class="section">
+                <div class="container">
+                    <div class="columns is-centered">
+                        <div class="column is-three-quarters-desktop content">
+                            <figure class="image is-16by9">
+                                <img src="{{ .RelPermalink }}" alt="{{ $page.Title }}"/>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {{ end }}
+
+        <section class="section">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-three-quarters-desktop content">
+                        {{ .Content }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{ end }}
+{{ end }}

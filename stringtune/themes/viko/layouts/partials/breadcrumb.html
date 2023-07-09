@@ -1,0 +1,16 @@
+<!-- simple bulma based breadcrumb trail -->
+
+{{ $sectionUrl := .CurrentSection.Permalink }}
+{{ $sectionRelUrl := .CurrentSection.RelPermalink }}
+{{ $sectionTitle := (default .CurrentSection.Title .CurrentSection.Params.short_title) | lower }}
+{{ $title := (default .Title .Params.short_title) | lower }}
+
+<div class="container">
+    <nav class="breadcrumb vk-breadcrumb" aria-label="breadcrumbs">
+        <ol class="vk-amp-breadcrumb">
+            <li><a href="{{ .Site.BaseURL }}">home</a></li>
+            <li><a href="{{ $sectionRelUrl }}">{{ $sectionTitle }}</a></li>
+            <li class="is-active"><a href="{{ .RelPermalink }}" aria-current="page">{{ $title }}</a></li>
+        </ol>
+    </nav>
+</div>

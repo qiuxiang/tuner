@@ -1,0 +1,7 @@
+User-agent: *
+
+{{ range where .Data.Pages "Params.no_index" true }}
+Disallow: {{ .RelPermalink }}
+{{ end }}
+
+Sitemap: {{ "sitemap.xml" | absLangURL }}

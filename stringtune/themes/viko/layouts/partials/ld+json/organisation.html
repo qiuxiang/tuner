@@ -1,0 +1,47 @@
+<!--
+    schema.org ld+json representation for an Organization
+    see https://developers.google.com/search/docs/data-types/logo
+    note: The logo should be rectangular unlike the general site and amp publisher logos
+-->
+
+{{ $logo := resources.Get "images/logos/google-org-logo.png" }}
+
+{{ $orgName := .Site.Params.contact.org_name }}
+{{ $streetAddress := .Site.Params.contact.street_address }}
+{{ $city := .Site.Params.contact.city }}
+{{ $postCode := .Site.Params.contact.post_code }}
+{{ $country := .Site.Params.contact.country }}
+
+{{ $phone := .Site.Params.contact.phone.display }}
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": {{ $orgName }},
+        "url": {{ .Site.BaseURL }},
+        "logo": {
+            "@type": "ImageObject",
+            "url": {{ $logo.Permalink }}
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {{ $country }},
+            "addressLocality": {{ $city }},
+            "postalCode": {{ $postCode }},
+            "streetAddress": {{ $streetAddress }}
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": {{ $phone }},
+            "contactType": "sales",
+            "areaServed": {{ $country }},
+            "availableLanguage": "en"
+        },
+        "sameAs": [
+            {{ .Site.Params.social.facebook_url }},
+            {{ .Site.Params.social.twitter_url }},
+            {{ .Site.Params.social.instagram_url }}
+        ]
+    }
+</script>

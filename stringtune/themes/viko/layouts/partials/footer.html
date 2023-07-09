@@ -1,0 +1,77 @@
+<!--
+    This partial is used by both single.html and single.amp.html.
+    It reads the scratch output-format variable to determine if it's being called from an AMP page
+    if so it renders AMP compatible images
+-->
+
+{{ $home := $.Site.BaseURL }}
+
+{{ $orgName := .Site.Params.contact.org_name }}
+{{ $streetAddress := .Site.Params.contact.street_address }}
+{{ $city := .Site.Params.contact.city }}
+{{ $postCode := .Site.Params.contact.post_code }}
+
+{{ $twitter_url := .Site.Params.social.twitter_url }}
+{{ $facebook_url := .Site.Params.social.facebook_url }}
+{{ $instagram_url := .Site.Params.social.instagram_url }}
+
+<footer class="footer vk-amp-footer">
+    <div class="container">
+        <div class="columns vk-amp-columns">
+            <div class="column vk-amp-column is-5">
+                <h2 class="title vk-amp-title is-5"><a href="{{ $home }}">Acme Corp</a></h2>
+                <p class="block">{{ $orgName }} <br /> {{ $streetAddress }} <br /> {{ $city }}, {{ $postCode }}</p>
+                <div class="buttons vk-amp-buttons">
+                    {{ if eq ($.Scratch.Get "output-format") "amp" }}
+                    <a class="button vk-amp-button" href="{{ $twitter_url }}">
+                        <amp-img src="/images/icons/twitter.svg" width="20" height="20" alt="Twitter logo"></amp-img>
+                    </a>
+                    <a class="button vk-amp-button" href="{{ $facebook_url }}">
+                        <amp-img src="/images/icons/facebook-f.svg" width="20" height="20" alt="Facebook logo"></amp-img>
+                    </a>
+                    <a class="button vk-amp-button" href="{{ $instagram_url }}">
+                        <amp-img src="/images/icons/instagram.svg" width="20" height="20" alt="Instagram logo"></amp-img>
+                    </a>
+                    {{ else }}
+                    <a class="button" href="{{ $twitter_url }}">
+                        <img src="/images/icons/twitter.svg" width="20" height="20" alt="Twitter logo" />
+                    </a>
+                    <a class="button" href="{{ $facebook_url }}">
+                        <img src="/images/icons/facebook-f.svg" width="20" height="20" alt="Facebook logo" />
+                    </a>
+                    <a class="button" href="{{ $instagram_url }}">
+                        <img src="/images/icons/instagram.svg" width="20" height="20" alt="Instagram logo" />
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+            <div class="column vk-amp-column">
+                <h3 class="title vk-amp-title is-6">Product</h3>
+                <ul>
+                    {{ range .Site.Menus.product }}
+                        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+            <div class="column vk-amp-column">
+                <h3 class="title vk-amp-title is-6">About us</h3>
+                <ul>
+                    {{ range .Site.Menus.company }}
+                        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="columns vk-amp-columns">
+            <div class="column vk-amp-column">
+                {{ range .Site.Menus.legal }}
+                    <a class="mr-5" href="{{ .URL }}">{{ .Name }}</a>
+                {{ end }}
+            </div>
+            <div class="column vk-amp-column has-text-right-tablet">
+                <p class="subtitle vk-amp-subtitle is-6">{{ partial "copyright" . }}</p>
+            </div>
+        </div>
+    </div>
+</footer>

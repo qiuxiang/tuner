@@ -1,0 +1,16 @@
+{{ $title := .Get "title" }}
+{{ $image := .Get "image" }}
+
+<div class="column is-4">
+    <div class="card vk-card--equal-height">
+        <div class="card-image">
+            <figure class="image is-4by3">
+                <img src="{{ $image }}" alt="{{ $title }}">
+            </figure>
+        </div>
+        <div class="card-content">
+            <h4 class="title is-spaced is-4">{{ $title }}</h4>
+            <p class="subtitle is-6">{{ .Inner }}</p>
+        </div>
+    </div>
+</div>

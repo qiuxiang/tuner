@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{- partial "head.html" . -}}
+        {{- block "moreHead" . }}{{- end }}
+    </head>
+    <body>
+        {{- partial "header.html" . -}}
+        {{ if not .IsHome }}
+            {{ if .Params.breadcrumb }}
+                {{- partial "breadcrumb.html" . -}}
+            {{ end }}
+            <header>
+                <h1 class="title is-3 has-text-centered">{{ .Title }}</h1>
+            </header>
+        {{ end }}
+        <main>
+            {{- block "main" . }}{{- end }}
+        </main>
+        {{- partial "footer.html" . -}}
+    </body>
+</html>

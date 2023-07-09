@@ -1,0 +1,7 @@
+<!-- calculates the reading time for a post -->
+
+{{ if or (eq .Section "blog") (eq .Section "press") }}
+&middot; <span class="read-time">
+    {{ if lt (math.Round (div (countwords .Content) 250.0)) 1 }}1{{ else }}{{ (math.Round (div (countwords .Content) 250.0)) }}{{ end }} min read
+</span>
+{{ end }}

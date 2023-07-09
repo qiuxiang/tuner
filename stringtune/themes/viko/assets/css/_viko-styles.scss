@@ -1,0 +1,73 @@
+.vk-is-half-screen {
+  height: 50vh;
+}
+
+.vk-card--equal-height {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .card-footer {
+    margin-top: auto;
+  }
+}
+
+.vk-is-reversed {
+  @include mobile {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .column {
+      width: 100%;
+    }
+  }
+}
+
+.vk-subtitle {
+  margin-bottom: 2rem !important;
+}
+
+.vk-section {
+  margin: 0 1.5rem 3rem 1.5rem;
+}
+
+.vk-title {
+  padding: 1.5rem 3rem;
+}
+
+.vk-breadcrumb {
+  margin: 1.5rem;
+  @include desktop {
+    margin: 1rem 0;
+  }
+}
+
+.vk-muted {
+  color: #4a4a4a
+}
+
+.vk-callout {
+  background-color: darken(white, 7%);
+}
+
+.vk-alternate-children {
+  @include desktop {
+    div.columns:nth-child(odd) {
+      flex-direction: row-reverse;
+      display: flex;
+    }
+  }
+}
+
+.vk-has-bottom-border {
+  @include mobile {
+    div.columns:not(:last-child) {
+      border-bottom: 1px solid darken(white, 15%);
+    }
+  }
+}
+
+.vk-primary-image-wrapper {
+  max-width: $desktop;
+  margin: 2rem auto;
+}

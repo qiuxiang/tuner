@@ -1,0 +1,292 @@
+.button:hover {
+    filter: brightness(95%);
+}
+
+.icon.is-small.is-right {
+    position: absolute;
+    right: 10px;
+    color: grey;
+}
+
+html {
+  height: 100%;
+  min-width: 600px;
+  background: #121212;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tuner specific styles */
+
+.tuner {
+  width: 100%;
+  height: 580px;
+  margin: auto;
+  position: relative;
+  color: #B0BEC5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tuner .meter {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  width: 100%;
+  margin: 0 auto 5vh auto;
+}
+
+.tuner .notes {
+  position: absolute;
+  top: 72%;
+  margin: auto;
+  left:0;
+  right:0;
+  width: 100%;
+  text-align: center;
+}
+
+.tuner .note {
+  font-size: 90px;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  padding-right: 30px;
+  padding-left: 10px;
+}
+
+.tuner .note.active {
+  color: #F48FB1; /* Active note color to pink */
+}
+
+.tuner .notes-list {
+  max-width: 600px;
+  overflow: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -ms-overflow-style: none;
+  white-space: nowrap;
+  -webkit-mask-image: -webkit-linear-gradient(
+    left,
+    rgba(0, 0, 0, 0),
+    #121212,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.tuner .notes-list .note-octave {
+	top: 50%;
+}
+
+.tuner .notes-list::-webkit-scrollbar {
+  display: none;
+}
+
+.tuner .note span {
+  position: absolute;
+  right: 0.25em;
+  font-size: 40%;
+  font-weight: normal;
+  color: #78909C; /* Dark blue-grey for note span */
+}
+
+.tuner .frequency {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  text-align: center;
+  width: 100%;
+}
+
+.tuner .frequency span {
+  font-size: 50%;
+  margin-left: 0.25em;
+}
+
+.tuner .meter {
+  position: absolute;
+  height: 400px;
+  bottom: 0%;
+  right: 50%;
+  margin: 0 auto 5vh auto;
+}
+
+.tuner .meter-pointer {
+  width: 2px;
+  height: 100%;
+  background: #B0BEC5; /* Light blue-grey */
+  transform: rotate(45deg);
+  transform-origin: bottom;
+  transition: transform 0.5s;
+  position: absolute;
+  right: 50%;
+}
+
+.tuner .meter-dot {
+  width: 10px;
+  height: 10px;
+  background: #B0BEC5; /* Light blue-grey */
+  border-radius: 50%;
+  position: absolute;
+  bottom: -5px;
+  right: 50%;
+  margin-right: -4px;
+}
+
+.tuner .meter-scale {
+  width: 1px;
+  height: 100%;
+  transform-origin: bottom;
+  transition: transform 0.2s;
+  box-sizing: border-box;
+  border-top: 10px solid #B0BEC5; /* Light blue-grey */
+  position: absolute;
+  right: 50%;
+}
+
+.tuner .meter-scale-strong {
+  width: 2px;
+  border-top-width: 20px;
+}
+
+.tuner .meter-scale-tuned {
+  width: 16px;
+  height: 10%; 
+  background: #4CAF50;
+  position: absolute;
+  bottom: 92%;  
+  right: 50%; 
+  margin-right: -7px;  /* centering adjustment */
+  box-shadow: 0 0 10px #4CAF50, 0 0 10px #4CAF50;  /* glow effect */
+  transform: rotate(0deg);  /* set rotation to 0 to place it at the top */
+}
+
+.tuner .frequency-lines {
+  position: absolute;
+  top: 10%;
+}
+
+@media (max-width: 768px) {
+
+  .tuner .meter {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .tuner .notes {
+    width: 100%;
+  }
+}
+
+.tuner .swal-button {
+  background: #B0BEC5; /* Light blue-grey */
+}
+
+.tuner .a4 {
+  position: absolute;
+  top: 1.5em;
+  left: 16px;
+}
+
+.tuner .a4 span {
+  color: #F48FB1; /* Pink */
+}
+
+.tuner .screen {
+  position: absolute;
+  top: 1.5em;
+  right: 16px;
+}
+
+.tuner .auto {
+  position: absolute;
+  top: 3em;
+  right: 16px;
+}
+
+.tuner .note.in-tune {
+  color: #4CAF50; /* Material Green for in-tune notes */
+}
+
+.about {
+  bottom: 60%;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  color: #B0BEC5;  /* Light blue-grey text */
+  text-align: justify;
+}
+
+.about h2 {
+  color: #F48FB1;  /* Pink */
+  text-align: center;
+}
+
+.about ul {
+  padding-left: 20px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #121212;  /* dark background */
+  color: #B0BEC5;  /* Light blue-grey text */
+  text-align: center;
+  padding: 10px 0; /* This gives some space above and below the text */
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap; /* to wrap items into next row if space is not enough */
+}
+
+footer a {
+  color: #B0BEC5; /* Light blue-grey text */
+  text-decoration: none; /* remove underline */
+  border: 2px solid #B0BEC5; /* border color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+footer a:hover {
+  background-color: #B0BEC5; /* Light blue-grey background when hovering */
+  color: #121212; /* Dark text color when hovering */
+}
+
+.btn {
+  font-size: 1em;
+  display: inline-block;
+  padding: 5px 5px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.language-selector {
+  background-color: transparent; /* set a transparent background */
+  color: #B0BEC5; /* Light blue-grey text */
+  border: 2px solid #B0BEC5; /* border color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: auto; /* adjust as per your needs */
+  -webkit-appearance: none; /* this is to remove default select styling in webkit browsers */
+  -moz-appearance: none; /* this is to remove default select styling in Firefox */
+  appearance: none; /* this is to remove default select styling in standard browsers */
+}

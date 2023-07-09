@@ -1,0 +1,64 @@
+<!doctype html>
+{{ $logo := resources.Get "images/logos/logo.png" }}
+<!--suppress JSUnresolvedLibraryURL -->
+
+<html ⚡ lang="en-uk">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{{ .Title }}</title>
+        <meta name="description" content="{{ .Description }}">
+
+        <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+        <link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
+        <script async src="https://cdn.ampproject.org/v0.js"></script>
+        <!-- Import Google fonts and AMP Extensions here -->
+
+        {{ partial "amp/custom_styles.html" . }}
+        {{ partial "amp/amp_boilerplate.html" . }}
+        {{ partial "favicons.html" . }}
+
+        {{ with  .OutputFormats.Get "html" -}}
+            <link rel="canonical" href="{{ .Permalink }}">
+        {{ end }}
+
+        {{ partial "ld+json/breadcrumb.html" . }}
+        {{ partial "ld+json/article.html" . }}
+
+        <!-- tells nested templates this is an AMP page, see partials/footer.html -->
+        {{ .Scratch.Set "output-format" "amp" }}
+    </head>
+
+    <body>
+        <header class="vk-amp-headerbar">
+            <a href="{{ .Site.BaseURL }}">
+                <amp-img class="home-button" src="{{ $logo.RelPermalink }}" width="90" height="30"></amp-img>
+            </a>
+            {{- partial "breadcrumb.html" . -}}
+        </header>
+
+        <main>
+            <h1 class="vk-amp-title is-3 vk-amp-has-text-centered">{{ .Title }}</h1>
+            <span class="vk-amp-subtitle vk-amp-has-text-centered">{{ .PublishDate.Format "2 Jan 2006" }} {{ partial "reading-time.html" . }}</span>
+
+            {{ with $page := . }}
+                {{ with .Resources.GetMatch "images/primary/16x9.svg" }}
+                    <figure class="vk-amp-primary-image">
+                        <amp-img
+                                layout="responsive"
+                                src="{{ .RelPermalink }}"
+                                alt="{{ $page.Title }}"
+                                height="900"
+                                width="1600">
+                        </amp-img>
+                    </figure>
+                {{ end }}
+            {{ end }}
+
+            <article class="vk-amp-article">{{ .Content }}</article>
+        </main>
+
+        {{ partial "footer.html" . }}
+    </body>
+</html>

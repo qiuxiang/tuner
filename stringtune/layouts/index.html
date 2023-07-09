@@ -1,6 +1,21 @@
-
-    {{ partial "header.html" . }}
-    {{ partial "tuner.html" . }}
-    {{ .Content }}
-    {{ partial "footer.html" . }}
+{{ define "main" }}
+    {{ $demo := .Site.Params.demo_url }}
+    {{ $homeImg := resources.Get "images/home.png" }}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-full has-text-centered">
+                        <h1 class="title">{{ .Site.Params.home.title }}</h1>
+                        <p class="mb-5">{{ .Site.Params.home.intro }}</p>
+                        {{ partial "tuner.html" . }}
+                        <div class="about" >
+                        {{ readFile "content/tuner_about.md" | markdownify }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{{ end }}
 

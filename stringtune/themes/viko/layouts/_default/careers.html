@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ $contact := relref . "contact" }}
+<section class="section">
+    <div class="container pt-3">
+        <p class="subtitle vk-subtitle has-text-centered is-5">{{ .Params.intro }}</p>
+        {{ .Content }}
+    </div>
+</section>
+
+<section class="section">
+    <div class="container has-text-centered">
+        <h2 class="title is-spaced">Join us</h2>
+        <p class="subtitle">Etiam condimentum hendrerit molestie. Etiam non tempus quam.</p>
+        <a class="button is-primary" href="{{ $contact }}">Contact us</a>
+    </div>
+</section>
+{{ end }}

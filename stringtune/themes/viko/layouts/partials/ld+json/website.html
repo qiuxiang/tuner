@@ -1,0 +1,16 @@
+<!--
+    schema.org ld+json representation for a Website
+    not currently used by Google
+-->
+
+{{ $orgName := .Site.Params.contact.org_name }}
+{{ $baseUrl := .Site.BaseURL }}
+
+<script type='application/ld+json'>
+    {
+        "@context": "http://www.schema.org",
+        "@type": "WebSite",
+        "name": {{ $orgName }},
+        "url": {{ $baseUrl }}
+    }
+</script>

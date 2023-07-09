@@ -1,0 +1,21 @@
+{{ $siteTwitterUsername := .Site.Params.social.twitter_handle }}
+{{ $authorTwitterUsername := .Site.Params.social.author_twitter_handle }}
+{{ $defaultImage := absURL "/images/social-card-2x1.png" }}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="{{ $siteTwitterUsername }}" />
+<meta name="twitter:creator" content="{{ $authorTwitterUsername }}" />
+
+{{ if .IsHome }}
+<meta name="twitter:title" content="{{ .Site.Title }}" />
+<meta name="twitter:description" content="{{ .Site.Params.description }}" />
+{{ else }}
+<meta name="twitter:title" content="{{ .Title }}" />
+<meta name="twitter:description" content="{{ .Description }}" />
+{{ end }}
+
+{{ with .Resources.GetMatch "images/primary/*2x1.png" }}
+<meta name="twitter:image" content="{{ .Permalink }}" />
+{{ else }}
+<meta name="twitter:image" content="{{ $defaultImage }}" />
+{{ end }}

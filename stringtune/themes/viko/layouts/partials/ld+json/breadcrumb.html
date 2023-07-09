@@ -1,0 +1,32 @@
+<!--
+    schema.org ld+json representation of a BreadcrumbList
+    see https://developers.google.com/search/docs/data-types/breadcrumb
+-->
+
+{{ $sectionUrl := .CurrentSection.Permalink }}
+{{ $sectionRelUrl := .CurrentSection.RelPermalink }}
+{{ $sectionTitle := (default .CurrentSection.Title .CurrentSection.Params.short_title) | lower }}
+{{ $title := (default .Title .Params.short_title) | lower }}
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "name": "Breadcrumbs",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "home",
+            "item": {{ .Site.BaseURL }}
+        },{
+                "@type": "ListItem",
+                "position": 2,
+                "name": {{ $sectionTitle }},
+            "item": {{ $sectionUrl }}
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ $title }}",
+                "item": {{ .Permalink }}
+        }]
+    }
+</script>

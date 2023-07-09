@@ -1,0 +1,25 @@
+{{ define "main" }}
+    {{ $demo := .Site.Params.demo_url }}
+    {{ $contact := relref . "contact" }}
+    {{ $homeImg := resources.Get "images/home.png" }}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered vk-is-reversed">
+                    <div class="column is-6">
+                        <h1 class="title">{{ .Site.Params.home.title }}</h1>
+                        <p class="mb-5">{{ .Site.Params.home.intro }}</p>
+                        <div class="column is-full">
+                        <figure class="image is-4by3">
+                            <img src="{{ $homeImg.RelPermalink }}" alt="{{ .Site.Title }}">
+                        </figure>
+                    	</div>
+                        <div class="buttons">
+                            <a class="button is-primary" href="{{ $contact }}">Contact us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{{ end }}

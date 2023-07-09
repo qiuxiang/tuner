@@ -1,0 +1,15 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Viko AMP theme"
+license = "Apache 2"
+licenselink = "https://github.com/viko-ai/hugo-amp-theme/blob/master/LICENSE"
+description = "A Bulma based AMP theme and sample site. The basis for the www.viko.ai website"
+homepage = "https://github.com/viko-ai/hugo-amp-theme"
+tags = ['hugo', 'amp', 'bulma', 'postcss']
+features = ['fast', 'responsive', 'amp']
+min_version = "0.80.0"
+
+[author]
+  name = "Toby Hobson"
+  homepage = "https://www.tobyhobson.com"
