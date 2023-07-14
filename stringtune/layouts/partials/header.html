@@ -1,12 +1,58 @@
+        {{ $options := (dict "outputStyle" "compressed") }}
+{{ $css := resources.Get "css/main.scss" | toCSS $options }}
+{{ $js := resources.Get "js/main.js" | resources.Fingerprint "md5" }}
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>StringTune Online Tuner - Best Online Instrument Tuner with mic</title>
-    <meta name="description" content="Tune your guitar, bass, ukulele, or any other string instrument with our free, easy-to-use online tuner which shows the note frequency. Optimized for mobile devices!">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/css/style.css" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8679955917317735" crossorigin="anonymous"></script>
+{{ if hugo.IsProduction }}
+    <!-- Purge unused css and minify it -->
+    {{ $css = $css | resources.PostCSS (dict "inlineImports" true) }}
+    {{ $css = $css | minify | resources.Fingerprint "md5" }}
+{{ end }}
+
+<title>
+    {{- if .IsHome -}}
+        {{ .Site.Title }}
+    {{- else -}}
+        {{ .Title }} | Acme Corp
+    {{- end -}}
+</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="{{ .Site.Params.author }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{ partial "favicons" . }}
+
+<!-- CSS & JS -->
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8679955917317735" crossorigin="anonymous"></script>
+<!-- // CSS & JS -->
+
+{{ partial "generator" . }}
+
+{{- if .IsHome -}}
+    <meta name="description" content="{{ .Site.Params.description }}">
+    {{ partial "ld+json/organisation.html" . }}
+    {{ partial "ld+json/website.html" . }}
+{{ else }}
+    <meta name="description" content="{{ .Description }}">
+    {{ if .Params.breadcrumb }}
+        {{- partial "ld+json/breadcrumb.html" . -}}
+    {{ end }}
+    {{ if  .OutputFormats.Get "amp" -}}
+        {{ partial "ld+json/article.html" . }}
+    {{ end }}
+{{ end }}
+
+{{ with .Params.no_index }}
+    <meta name="robots" content="noindex, noarchive">
+{{ end }}
+
+{{ with  .OutputFormats.Get "amp" -}}
+    <link rel="amphtml" href="{{ .Permalink }}">
+{{ end }}
+
+{{ printf "<!-- twitter & facebook -->" | safeHTML }}
+{{ partial "social/twitter_card.html" . }}
+{{ partial "social/facebook_card.html" . }}

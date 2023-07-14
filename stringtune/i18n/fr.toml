@@ -1,0 +1,19 @@
+[Intro]
+other = """
+Bienvenue sur StringTune, l'accordeur en ligne le plus facile à utiliser. Pour commencer, autorisez l'accès au microphone. Jouez chaque corde une à la fois. L'accordeur détectera automatiquement la hauteur de la note jouée et indiquera si elle est trop aigüe ou trop grave. Continuez à ajuster jusqu'à ce que l'accordeur pointe directement vers le centre. Voici quelques schémas d'accordage courants pour différents instruments à cordes :
+
+- Accordage standard de la guitare : E - A - D - G - B - E
+- Accordage standard de la basse : E - A - D - G
+- Accordage standard du ukulélé : G - C - E - A
+- Accordage standard du violon : G - D - A - E
+- Accordage standard du violoncelle : C - G - D - A
+- Accordage standard de l'alto : C - G - D - A
+- Accordage standard de la mandoline : G - D - A - E
+- Accordage standard du banjo (5 cordes) : G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Garder l'écran allumé"
+
+[auto]
+other = "Auto"
+

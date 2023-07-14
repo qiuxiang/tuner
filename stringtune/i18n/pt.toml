@@ -1,0 +1,19 @@
+[Intro]
+other = """
+Bem-vindo ao StringTune, o afinador online mais fácil de usar. Para começar, permita o acesso ao microfone. Toque cada corda uma de cada vez. O afinador irá detectar automaticamente a altura da nota sendo tocada e indicar se está aguda ou desafinada. Continue ajustando até que o afinador aponte diretamente para o centro. Aqui estão alguns padrões de afinação comuns para vários instrumentos de cordas:
+
+- Afinação padrão da guitarra: E - A - D - G - B - E
+- Afinação padrão do baixo: E - A - D - G
+- Afinação padrão do ukulele: G - C - E - A
+- Afinação padrão do violino: G - D - A - E
+- Afinação padrão do violoncelo: C - G - D - A
+- Afinação padrão da viola: C - G - D - A
+- Afinação padrão do bandolim: G - D - A - E
+- Afinação padrão do banjo (5 cordas): G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Manter ecrã ligado"
+
+[auto]
+other = "Auto"
+

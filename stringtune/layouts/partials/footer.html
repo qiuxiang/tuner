@@ -1,27 +1,97 @@
-<footer>
-      <div class="social-profiles">
-        <a href="https://www.facebook.com/onlinestringtuner" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/stringtune4299" target="_blank"><i class="fab fa-twitter"></i></a>
-      </div>
-     <div>
-       <div class="language-selection btn">
-	    <select onchange="changeLanguage(this.value)">
-	      <option value="en">English</option>
-	      <option value="es">Español</option>
-	      <option value="fr">Français</option>
-	      <option value="de">Deutsch</option>
-	      <option value="it">Italiano</option>
-	      <option value="zh">中文</option>
-	      <option value="ja">日本語</option>
-	      <option value="ko">한국어</option>
-	      <option value="ua">Українська</option>
-	      <option value="pl">Polski</option>
-	      <!-- Add other languages here -->
-	    </select>
-     </div>
-      <a href="privacy-policy.html" target="_blank" class="btn">Privacy Policy</a>
-     </div>
-         <!-- Google tag (gtag.js) -->
+<!--
+    This partial is used by both single.html and single.amp.html.
+    It reads the scratch output-format variable to determine if it's being called from an AMP page
+    if so it renders AMP compatible images
+-->
+
+{{ $home := $.Site.BaseURL }}
+{{ $twitter_url := .Site.Params.social.twitter_url }}
+{{ $facebook_url := .Site.Params.social.facebook_url }}
+{{ $instagram_url := .Site.Params.social.instagram_url }}
+
+<footer class="footer">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3">
+                <h2 class="title is-5"><a href="{{ $home }}">Stringtune</a></h2>
+                <div class="buttons vk-amp-buttons is-centered">
+                    {{ if eq ($.Scratch.Get "output-format") "amp" }}
+                    <a class="button vk-amp-button" href="{{ $twitter_url }}">
+                        <amp-img src="/images/icons/twitter.svg" width="20" height="20" alt="Twitter logo"></amp-img>
+                    </a>
+                    <a class="button vk-amp-button" href="{{ $facebook_url }}">
+                        <amp-img src="/images/icons/facebook-f.svg" width="20" height="20" alt="Facebook logo"></amp-img>
+                    </a>
+                    {{ else }}
+                    <a class="button" href="{{ $twitter_url }}">
+                        <img src="/images/icons/twitter.svg" width="20" height="20" alt="Twitter logo" />
+                    </a>
+                    <a class="button" href="{{ $facebook_url }}">
+                        <img src="/images/icons/facebook-f.svg" width="20" height="20" alt="Facebook logo" />
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+            <div class="column">
+                <h3 class="title is-6">Product</h3>
+                <ul>
+                    {{ range .Site.Menus.product }}
+                        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+            <div class="column">
+                <h3 class="title is-6">About us</h3>
+                <ul>
+                    {{ range .Site.Menus.company }}
+                        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container">
+        <div class="columns">
+        <div class="column">
+    	<div class="language-selection">
+	<a href="/en/" class="btn">English</a>
+	<a href="/es/" class="btn">Español</a>
+	<a href="/fr/" class="btn">Français</a>
+	<a href="/de/" class="btn">Deutsch</a>
+	<a href="/zh/" class="btn">中文</a>
+	<a href="/it/" class="btn">Italiano</a>
+	<a href="/pt/" class="btn">Português</a>
+	<a href="/ja/" class="btn">日本語</a>
+	<a href="/ar/" class="btn">العربية</a>
+	<a href="/pl/" class="btn">Polski</a>
+	<a href="/uk/" class="btn">Українська</a>
+	<a href="/nl/" class="btn">Nederlands</a>
+	<a href="/ko/" class="btn">한국어</a>
+	<a href="/tr/" class="btn">Türkçe</a>
+	<a href="/el/" class="btn">Ελληνικά</a>
+	<a href="/sv/" class="btn">Svenska</a>
+	<a href="/no/" class="btn">Norsk</a>
+	<a href="/da/" class="btn">Dansk</a>
+	<a href="/fi/" class="btn">Suomi</a>
+	</div>
+	</div>
+	</div>
+    	</div>
+        
+        <div class="columns">
+            <div class="column">
+                {{ range .Site.Menus.legal }}
+                    <a class="mr-5" href="{{ .URL }}">{{ .Name }}</a>
+                {{ end }}
+            </div>
+          <div class="column has-text-right-tablet">
+                <p class="subtitle is-6">{{ partial "copyright" . }}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJQ4QQXGDS"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];

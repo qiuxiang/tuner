@@ -1,0 +1,19 @@
+[Intro]
+other = """
+StringTune'e hoş geldiniz, kullanması en kolay online tuner. Başlamak için, mikrofona erişime izin verin. Her bir dizeyi tek tek çalın. Tuner, çalınan notanın yüksekliğini otomatik olarak algılar ve fazla mı yoksa az mı olduğunu belirtir. Tuner doğrudan merkezi gösterene kadar ayarlamaya devam edin. İşte çeşitli dize aletleri için bazı yaygın ayarlama düzenleri:
+
+- Standart Gitar Ayarı: E - A - D - G - B - E
+- Standart Bas Gitar Ayarı: E - A - D - G
+- Standart Ukulele Ayarı: G - C - E - A
+- Standart Keman Ayarı: G - D - A - E
+- Standart Viyolonsel Ayarı: C - G - D - A
+- Standart Viyola Ayarı: C - G - D - A
+- Standart Mandolin Ayarı: G - D - A - E
+- Standart Banjo Ayarı (5 dize): G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Ekranı Açık Tut"
+
+[auto]
+other = "Oto"
+

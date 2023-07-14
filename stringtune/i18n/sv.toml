@@ -1,0 +1,19 @@
+[Intro]
+other = """
+Välkommen till StringTune, det enklaste online-stämverktyget att använda. För att börja, tillåt åtkomst till mikrofonen. Spela varje sträng en i taget. Stämverktyget kommer automatiskt att upptäcka tonhöjden för den spelade noten och ange om den är för hög eller för låg. Fortsätt justera tills stämverktyget pekar direkt i mitten. Här är några vanliga stämningsscheman för olika stränginstrument:
+
+- Standard gitarrstämning: E - A - D - G - B - E
+- Standard basgitarrstämning: E - A - D - G
+- Standard ukulele-stämning: G - C - E - A
+- Standard violin-stämning: G - D - A - E
+- Standard cello-stämning: C - G - D - A
+- Standard viola-stämning: C - G - D - A
+- Standard mandolin-stämning: G - D - A - E
+- Standard banjo-stämning (5 strängar): G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Håll skärmen på"
+
+[auto]
+other = "Auto"
+

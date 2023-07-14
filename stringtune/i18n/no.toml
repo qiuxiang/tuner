@@ -1,0 +1,19 @@
+[Intro]
+other = """
+Velkommen til StringTune, den enkleste online tuner å bruke. For å starte, tillat tilgang til mikrofonen. Spill hver streng en om gangen. Tuneren vil automatisk oppdage tonehøyden til den spilte noten og indikere om den er for høy eller for lav. Fortsett å justere til tuner peker direkte til sentrum. Her er noen vanlige tuningmønstre for ulike strengeinstrumenter:
+
+- Standard gitarstemming: E - A - D - G - B - E
+- Standard bassgitarstemming: E - A - D - G
+- Standard ukulele-stemming: G - C - E - A
+- Standard fiolinstemming: G - D - A - E
+- Standard cellostemming: C - G - D - A
+- Standard bratsjstemming: C - G - D - A
+- Standard mandolin-stemming: G - D - A - E
+- Standard banjo-stemming (5 strenger): G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Hold skjermen på"
+
+[auto]
+other = "Auto"
+

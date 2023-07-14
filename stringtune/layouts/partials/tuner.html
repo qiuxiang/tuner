@@ -14,18 +14,16 @@
 	    </div>
 	    <div class="a4">A<sub>4</sub> = <span>440</span> Hz</div>
 	    <label class="screen">
-	      Keep Screen On
+	      {{ i18n "keepScreenOn" }}
 	      <input type="checkbox" id="screenLock" />
 	    </label>
 	    <label class="auto">
-	      Auto
+	      {{ i18n "auto" }}
 	      <input type="checkbox" checked />
 	    </label>
     </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdn.jsdelivr.net/npm/aubiojs@0.1.1/build/aubio.min.js"></script>
-<script src="https://unpkg.com/i18next@latest/dist/umd/i18next.min.js"></script>
-<script src="https://unpkg.com/i18next-http-backend@latest/i18nextHttpBackend.min.js"></script>
 <script src="{{ .Site.BaseURL }}js/tuner/screenlock.js"></script>
 <script src="{{ .Site.BaseURL }}js/tuner/tuner.js"></script>
 <script src="{{ .Site.BaseURL }}js/tuner/meter.js"></script>

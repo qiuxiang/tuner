@@ -58,9 +58,6 @@ table {
 
 $body-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default
 $gap: 1.5rem;
-$body-color: #282c35;
-$title-color: #363636;
-$link-color: #48c774;
 
 html {
   font-size: 16px;
@@ -75,14 +72,12 @@ html {
 
 body {
   font-family: $body-family;
-  color: $body-color;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
 }
 
 a {
-  color: $link-color;
   cursor: pointer;
   text-decoration: none;
 }
@@ -120,7 +115,6 @@ strong {
 }
 
 .vk-amp-title {
-  color: $title-color;
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.125;
@@ -171,8 +165,6 @@ strong {
 .vk-amp-button {
   padding: 10px 20px;
   margin-right: 0.5rem;
-  background-color: white;
-  border: 1px solid #dbdbdb;
   line-height: 1.5em;
   display: inline-flex;
   border-radius: 4px;
@@ -191,7 +183,6 @@ strong {
 }
 
 .vk-amp-footer {
-  background-color: #fafafa;
   padding: 1.5rem;
 }
 

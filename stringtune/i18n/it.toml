@@ -1,0 +1,19 @@
+[Intro]
+other = """
+Benvenuto a StringTune, l'accordatore online più facile da usare. Per iniziare, permetti l'accesso al microfono. Suona una corda alla volta. L'accordatore rileverà automaticamente l'altezza della nota suonata e indicherà se è troppo acuta o troppo bassa. Continua ad aggiustare fino a quando l'accordatore non punta direttamente al centro. Ecco alcuni schemi di accordatura comuni per vari strumenti a corda:
+
+- Accordatura Standard Chitarra: E - A - D - G - B - E
+- Accordatura Standard Basso: E - A - D - G
+- Accordatura Standard Ukulele: G - C - E - A
+- Accordatura Standard Violino: G - D - A - E
+- Accordatura Standard Violoncello: C - G - D - A
+- Accordatura Standard Viola: C - G - D - A
+- Accordatura Standard Mandolino: G - D - A - E
+- Accordatura Standard Banjo (5 corde): G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Mantieni lo schermo acceso"
+
+[auto]
+other = "Auto"
+

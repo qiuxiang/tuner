@@ -1,0 +1,19 @@
+[Intro]
+other = """
+Witaj w StringTune, najłatwiejszym do użytku stroikiem online. Na początek, zezwól na dostęp do mikrofonu. Graj na każdej strunie pojedynczo. Stroik automatycznie wykryje wysokość tonu granej nuty i wskaże, czy jest za wysoka czy za niska. Kontynuuj regulację, aż stroik wskaże bezpośrednio na środek. Oto kilka typowych schematów strojenia dla różnych instrumentów strunowych:
+
+- Standardowe strojenie gitary: E - A - D - G - B - E
+- Standardowe strojenie gitary basowej: E - A - D - G
+- Standardowe strojenie ukulele: G - C - E - A
+- Standardowe strojenie skrzypiec: G - D - A - E
+- Standardowe strojenie wiolonczeli: C - G - D - A
+- Standardowe strojenie altówki: C - G - D - A
+- Standardowe strojenie mandoliny: G - D - A - E
+- Standardowe strojenie banjo (5-strunowe): G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Nie wyłączaj ekranu"
+
+[auto]
+other = "Auto"
+

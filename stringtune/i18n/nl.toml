@@ -1,0 +1,19 @@
+[Intro]
+other = """
+Welkom bij StringTune, de makkelijkste online stemmer om te gebruiken. Om te beginnen, sta toegang tot de microfoon toe. Speel elke snaar één voor één. De stemmer zal automatisch de toonhoogte van de gespeelde noot detecteren en aangeven of deze te hoog of te laag is. Blijf aanpassen totdat de stemmer direct in het midden wijst. Hier zijn enkele veel voorkomende stemmingsschema's voor verschillende snaarinstrumenten:
+
+- Standaard gitaarstemming: E - A - D - G - B - E
+- Standaard basgitaarstemming: E - A - D - G
+- Standaard ukulele-stemming: G - C - E - A
+- Standaard vioolstemming: G - D - A - E
+- Standaard cellostemming: C - G - D - A
+- Standaard altvioolstemming: C - G - D - A
+- Standaard mandoline-stemming: G - D - A - E
+- Standaard banjo-stemming (5 snaren): G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Houd scherm aan"
+
+[auto]
+other = "Auto"
+

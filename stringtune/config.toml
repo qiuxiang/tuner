@@ -1,10 +1,13 @@
 baseURL = 'https://stringtune.com/'
 languageCode = 'en-us'
-title = 'StringTune Online Tuner - Best Online Instrument Tuner with mic'
+title = 'StringTune Online Tuner - Best Online Instrument Tuner with microphone'
 
 DefaultContentLanguage = "en"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 theme = "viko"
+
+[params]
+    copyright = "Copyright {year}, Stringtune.com"
 
 [languages]
   [languages.en]
@@ -12,7 +15,97 @@ theme = "viko"
     description = "Tune your guitar, bass, ukulele, or any other string instrument with our free, easy-to-use online tuner which shows the note frequency. Optimized for mobile devices!"
     languageName = "English"
   [languages.es]
-    title = "Spanish title here"
-    description = "Spanish description here"
+    title = "Afinador en línea StringTune - El mejor afinador de instrumentos en línea con micrófono"
+    description = "Afiná tu guitarra, bajo, ukelele, o cualquier otro instrumento de cuerda con nuestro afinador online gratuito y fácil de usar, que muestra la frecuencia de la nota. ¡Optimizado para dispositivos móviles!"
     languageName = "Español"
+  [languages.fr]
+    title = "Accordeur en ligne StringTune - Le meilleur accordeur d'instruments en ligne avec micro"
+    description = "Accordez votre guitare, basse, ukulélé ou tout autre instrument à cordes avec notre accordeur en ligne gratuit et facile à utiliser qui affiche la fréquence de la note. Optimisé pour les appareils mobiles!"
+    languageName = "Français"
+  [languages.de]
+    title = "StringTune Online-Stimmer - Bester Online-Instrumentenstimmer mit Mikrofon"
+    description = "Stimmen Sie Ihre Gitarre, Ihren Bass, Ihr Ukulele oder jedes andere Saiteninstrument mit unserem kostenlosen, benutzerfreundlichen Online-Stimmer, der die Notenfrequenz anzeigt. Optimiert für mobile Geräte!"
+    languageName = "Deutsch"
+  [languages.zh]
+    title = "StringTune在线调谐器 - 最好的在线乐器调谐器，带麦克风"
+    description = "使用我们免费的、易于使用的在线调谐器调整您的吉他、贝斯、尤克里里或任何其他弦乐器，该调谐器会显示音符频率。优化为移动设备！"
+    languageName = "简体中文"
+[languages.it]
+  title = "StringTune Accordatore Online - Il miglior accordatore di strumenti online con microfono"
+  description = "Accorda la tua chitarra, basso, ukulele, o qualsiasi altro strumento a corde con il nostro accordatore online gratuito e facile da usare, che mostra la frequenza della nota. Ottimizzato per dispositivi mobili!"
+  languageName = "Italiano"
 
+[languages.pt]
+  title = "Afinador Online StringTune - Melhor Afinador de Instrumentos Online com Microfone"
+  description = "Afine sua guitarra, baixo, ukulele, ou qualquer outro instrumento de cordas com nosso afinador online gratuito e fácil de usar, que mostra a frequência da nota. Otimizado para dispositivos móveis!"
+  languageName = "Português"
+
+[languages.ja]
+  title = "StringTune オンラインチューナー - マイク付き最高のオンライン楽器チューナー"
+  description = "私たちの無料で使いやすいオンラインチューナーを使用して、ギター、ベース、ウクレレ、または他の弦楽器を調整してください。このチューナーは音の周波数を表示します。モバイルデバイスに最適化されています!"
+  languageName = "日本語"
+
+[languages.ar]
+  title = "موالف الأدوات الموسيقية عبر الإنترنت StringTune - أفضل موالف للأدوات الموسيقية عبر الإنترنت مع ميكروفون"
+  description = "قم بتوجيه غيتارك ، الباس ، الأوكليلي ، أو أي آلة وترية أخرى باستخدام موالفنا المجاني سهل الاستخدام عبر الإنترنت الذي يظهر تردد النوتة. مُحسّن للأجهزة المحمولة!"
+  languageName = "العربية"
+
+[languages.pl]
+  title = "Onlineowy stroik StringTune - Najlepszy internetowy stroik do instrumentów z mikrofonem"
+  description = "Dopasuj swoją gitarę, bas, ukulele lub inny instrument strunowy za pomocą naszego bezpłatnego, łatwego w obsłudze stroika online, który pokazuje częstotliwość nuty. Zoptymalizowany dla urządzeń mobilnych!"
+  languageName = "Polski"
+
+[languages.uk]
+  title = "Онлайн-тюнер StringTune - Найкращий онлайн-тюнер для інструментів з мікрофоном"
+  description = "Налаштуйте вашу гітару, бас-гітару, укулеле або будь-який інший струнний інструмент за допомогою нашого безкоштовного, простого в користуванні онлайн-тюнера, який показує частоту ноти. Оптимізовано для мобільних пристроїв!"
+  languageName = "Українська"
+  
+[languages.ko]
+  title = "StringTune 온라인 튜너 - 마이크를 이용한 최고의 온라인 악기 튜너"
+  description = "우리의 무료이며 사용하기 쉬운 온라인 튜너를 사용하여 기타, 베이스, 우쿨렐레 또는 다른 현악기를 조율하세요. 이 튜너는 음표의 주파수를 마이크로 보여줍니다. 모바일 장치에 최적화되어 있습니다!"
+  languageName = "한국어"
+
+[languages.nl]
+  title = "StringTune Online Tuner - Beste Online Instrumenten Tuner met microfoon"
+  description = "Stem uw gitaar, bas, ukulele, of elk ander snaarinstrument met onze gratis, eenvoudig te gebruiken online tuner die de nootfrequentie toont met behulp van een microfoon. Geoptimaliseerd voor mobiele apparaten!"
+  languageName = "Nederlands"
+
+[languages.tr]
+  title = "StringTune Çevrimiçi Akort Aleti - Mikrofon Kullanılan En İyi Çevrimiçi Enstrüman Akort Aleti"
+  description = "Gitarınızı, basınızı, ukulelenizi veya başka bir yaylı çalgınızı, not frekansını mikrofonla gösteren ücretsiz, kullanımı kolay çevrimiçi akort aletimizle ayarlayın. Mobil cihazlar için optimize edilmiştir!"
+  languageName = "Türkçe"
+
+[languages.hi]
+  title = "StringTune ऑनलाइन ट्यूनर - माइक के साथ सर्वश्रेष्ठ ऑनलाइन उपकरण ट्यूनर"
+  description = "हमारे मुफ्त, आसान-उपयोग ऑनलाइन ट्यूनर का उपयोग करके अपने गिटार, बास, यूकुलेली, या किसी अन्य स्ट्रिंग उपकरण को ट्यून करें, जो नोट फ़्रीक्वेंसी दिखाता है। मोबाइल डिवाइस के लिए अनुकूलित!"
+  languageName = "हिंदी"
+
+[languages.vi]
+  title = "Bộ điều chỉnh trực tuyến StringTune - Bộ điều chỉnh nhạc cụ trực tuyến tốt nhất với microphone"
+  description = "Điều chỉnh guitar, bass, ukulele, hoặc bất kỳ nhạc cụ dây nào khác với bộ điều chỉnh trực tuyến miễn phí, dễ sử dụng của chúng tôi, hiển thị tần số của nốt nhạc bằng microphone. Tối ưu hóa cho thiết bị di động!"
+  languageName = "Tiếng Việt"
+  
+[languages.el]
+  title = "StringTune Online Tuner - Ο καλύτερος online κουρδιστής οργάνων με μικρόφωνο"
+  description = "Κουρδίστε την κιθάρα, το μπάσο, το ukulele, ή οποιοδήποτε άλλο χορδόφωνο με το δωρεάν, εύχρηστο online κουρδιστή μας που δείχνει τη συχνότητα της νότας με την βοήθεια ενός μικροφώνου. Βελτιστοποιημένο για κινητές συσκευές!"
+  languageName = "Ελληνικά"
+
+[languages.sv]
+  title = "StringTune Online Stämapparat - Bästa onlineinstrumentstämaren med mikrofon"
+  description = "Stäm din gitarr, bas, ukulele, eller något annat stränginstrument med vår gratis, lättanvända online stämapparat som visar notfrekvensen med hjälp av en mikrofon. Optimerad för mobila enheter!"
+  languageName = "Svenska"
+
+[languages.no]
+  title = "StringTune Online Tuner - Beste online instrument tuner med mikrofon"
+  description = "Stem gitaren, bassen, ukulelen, eller noe annet strengeinstrument med vår gratis, brukervennlige online tuner som viser notefrekvensen ved hjelp av en mikrofon. Optimalisert for mobile enheter!"
+  languageName = "Norsk"
+
+[languages.da]
+  title = "StringTune Online Tuner - Bedste online instrumenttuner med mikrofon"
+  description = "Stem din guitar, bas, ukulele, eller et andet strengeinstrument med vores gratis, brugervenlige online tuner, der viser notefrekvensen ved hjælp af en mikrofon. Optimeret til mobile enheder!"
+  languageName = "Dansk"
+
+[languages.fi]
+  title = "StringTune Online-viritin - Paras online-soitin viritin mikrofonilla"
+  description = "Viritä kitarasi, bassosi, ukulelesi tai mikä tahansa muu jousisoitin käyttämällä ilmaista, helppokäyttöistä online-virittimemme, joka näyttää nuotin taajuuden mikrofonin avulla. Optimoidut mobiililaitteille!"
+  languageName = "Suomi"

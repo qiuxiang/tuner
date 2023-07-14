@@ -1,0 +1,19 @@
+[Intro]
+other = """
+Willkommen bei StringTune, dem einfachsten Online-Stimmer. Um zu beginnen, erlaube den Zugriff auf das Mikrofon. Spiele jede Saite einzeln. Der Stimmgabel erkennt automatisch die Tonhöhe der gespielten Note und zeigt an, ob sie zu hoch oder zu tief ist. Bleiben Sie dabei, bis der Stimmer genau in die Mitte zeigt. Hier sind einige gängige Stimmungsmuster für verschiedene Saiteninstrumente:
+
+- Gitarre Standard-Stimmung: E - A - D - G - B - E
+- Bassgitarre Standard-Stimmung: E - A - D - G
+- Ukulele Standard-Stimmung: G - C - E - A
+- Geige Standard-Stimmung: G - D - A - E
+- Cello Standard-Stimmung: C - G - D - A
+- Bratsche Standard-Stimmung: C - G - D - A
+- Mandoline Standard-Stimmung: G - D - A - E
+- Banjo Standard-Stimmung (5-Saiten): G - D - G - B - D
+"""
+[keepScreenOn]
+other = "Bildschirm anlassen"
+
+[auto]
+other = "Auto"
+

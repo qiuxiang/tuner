@@ -1,7 +1,7 @@
 // Override Bulma's variables here
-$note-light: #B0BEC5; // Make the light color darker
-$note-light-accent: #F48FB1; // Make the light color darker
-$note-dark: #673AB7; // Make the dark color darker
+$note-light: #B0BEC5;
+$note-light-accent: #F48FB1; 
+$note-dark: #673AB7;
 $material-red: #F44336; // Material Red
 $material-amber: #FFC107; // Material Amber
 $material-green: #4CAF50; // Material Green
@@ -16,12 +16,13 @@ $title-color: $note-light-accent;
 $body-background-color: $note-light;
 $body-foreground-color: $note-dark;
 
-$primary: $note-dark; // Material Deep Purple
-$link: $note-light; // Material Indigo
+$primary: $note-dark;
+$link: $note-light;
 $danger: $material-red; // Material Red
 $warning: $material-amber; // Material Amber
 $success: $material-green; // Material Green
 $info: $material-light-blue; // Material Light Blue
+$footer-color: $note-dark;
 
 // Inverted colors
 $primary-invert: findColorInvert($primary);
