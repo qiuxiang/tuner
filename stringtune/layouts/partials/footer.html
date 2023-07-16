@@ -7,7 +7,6 @@
 {{ $home := $.Site.BaseURL }}
 {{ $twitter_url := .Site.Params.social.twitter_url }}
 {{ $facebook_url := .Site.Params.social.facebook_url }}
-{{ $instagram_url := .Site.Params.social.instagram_url }}
 
 <footer class="footer">
     <div class="container">
@@ -32,24 +31,29 @@
                     {{ end }}
                 </div>
             </div>
-            <div class="column">
-                <h3 class="title is-6">Product</h3>
-                <ul>
-                    {{ range .Site.Menus.product }}
-                        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-                    {{ end }}
-                </ul>
-            </div>
-            <div class="column">
-                <h3 class="title is-6">About us</h3>
-                <ul>
-                    {{ range .Site.Menus.company }}
-                        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-                    {{ end }}
-                </ul>
-            </div>
-        </div>
-        
+	<div class="column">
+	<!--
+	    <h3 class="title is-6">Tools</h3>
+	    <ul>
+		{{ range .Site.Menus.product }}
+		{{ if eq .Page.Lang $.Lang }}
+		    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+		{{ end }}
+		{{ end }}
+	    </ul>
+	-->
+	</div>
+	<div class="column">
+	    <h3 class="title is-6">About us</h3>
+	    <ul>
+		{{ range .Site.Menus.company }}
+		{{ if eq .Page.Lang $.Lang }}
+		    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+		{{ end }}
+		{{ end }}
+	    </ul>
+	</div>
+	</div>
         <div class="container">
         <div class="columns">
         <div class="column">

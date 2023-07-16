@@ -224,9 +224,10 @@ html {
   text-align: justify;
 }
 
-.about h2 {
-  color: #F48FB1;  /* Pink */
-  text-align: center;
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+    color: #F48FB1;
+    font-weight: 600;
+    line-height: 1.125;
 }
 
 .about ul {

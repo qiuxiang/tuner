@@ -1,0 +1,17 @@
+{{ $iconApple := resources.Get "/images/favicon/apple-touch-icon.png" }}
+{{ $icon32 := resources.Get "/images/favicon/favicon-32x32.png" }}
+{{ $icon16 := resources.Get "/images/favicon/favicon-16x16.png" }}
+{{ $manifest := resources.Get "/images/favicon/site.webmanifest" }}
+{{ $ico := resources.Get "/images/favicon/favicon.ico" }}
+
+
+<!-- Template Favicon & Icons Start -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ $iconApple.RelPermalink }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ $icon32.RelPermalink }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ $icon16.RelPermalink }}">
+<link rel="manifest" href="{{ $manifest.RelPermalink }}">
+<link rel="shortcut icon" href="{{ $ico.RelPermalink }}">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- // Template Favicon & Icons-->

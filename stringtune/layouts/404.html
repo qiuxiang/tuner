@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{- partial "head.html" . -}}
+        {{- block "moreHead" . }}{{- end }}
+    </head>
+    <body>
+        {{- partial "header.html" . -}}
+        <main>
+            <section class="hero is-halfheight">
+                <div class="hero-body container">
+                    <div>
+                        <p class="title">
+                            404 - Not Found
+                        </p>
+                        <p class="subtitle">
+                            Sorry that page doesn't exist
+                        </p>
+                        <p class="has-text-centered">
+                            <a class="button is-primary" href="{{ .Site.BaseURL }}">Home page</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        {{- partial "footer.html" . -}}
+    </body>
+</html>
