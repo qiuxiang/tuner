@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "midi-writer-js": "^3.1.1"
+  }
+}

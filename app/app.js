@@ -1,3 +1,4 @@
+import { generateMidi } from "./modules/midi";
 const Application = function () {
   this.initA4();
   this.tuner = new Tuner(this.a4);
@@ -21,6 +22,9 @@ Application.prototype.initA4 = function () {
 
 Application.prototype.start = function () {
   const self = this;
+
+  console.log("HI");
+  generateMidi();
 
   this.tuner.onNoteDetected = function (note) {
     if (self.notes.isAutoMode) {
